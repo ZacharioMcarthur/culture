@@ -1,0 +1,463 @@
+Documentation du Projet Culture
+
+1. Présentation Générale
+
+Le Projet Culture est une plateforme de valorisation, gestion et mise en
+avant des patrimoines culturels, gastronomiques, touristiques et
+artistiques du Bénin.
+Il s’agit d’une application web construite avec Laravel, permettant aux
+utilisateurs d’explorer des plats, des lieux, des évènements et diverses
+informations culturelles.
+
+2. Objectifs du Projet
+
+-   Promouvoir la richesse culturelle béninoise.
+-   Centraliser des informations jusque‑là éparses.
+-   Offrir une interface simple, attrayante et intuitive.
+-   Proposer une gestion facile pour l’administrateur (CRUD complet).
+-   Assurer un accès rapide aux données culturelles pour les visiteurs.
+
+3. Fonctionnalités Principales
+
+3.1 Côté Visiteur
+
+-   Affichage des différentes sections culturelles :
+    -   Plats traditionnels
+    -   Lieux touristiques
+    -   Danses et rythmes
+    -   Événements culturels
+-   Consultation des images, descriptions et détails.
+-   Navigation fluide et responsive.
+
+3.2 Côté Administrateur
+
+-   Connexion sécurisée.
+-   Tableau de bord pour gérer toutes les données.
+-   CRUD complet sur :
+    -   Plats
+    -   Lieux
+    -   Danses
+    -   Évènements
+    -   Images associées
+-   Gestion du statut, visibilité, tri, etc.
+-   Journalisation des actions critiques (logs internes).
+
+4. Structure Technique
+
+4.1 Technologies
+
+-   Framework : Laravel 12+
+-   PHP : 8.2
+-   Base de données : MySQL
+-   Frontend : Blade, Bootstrap/Tailwind selon personnalisation
+-   Authentification : Laravel Breeze
+-   Gestion images : Storage Laravel
+-   Architecture : MVC
+
+4.2 Routes & Endpoints
+
+-   Routes publiques pour afficher les contenus.
+-   Routes protégées pour l’administration.
+-   Contrôleurs dédiés à chaque entité culturelle.
+-   Middleware pour la sécurité.
+
+5. Problèmes Rencontrés & Résolutions
+
+5.1 Erreur Variable Indéfinie
+
+Exemple :
+Undefined variable $plats
+
+Cause : la variable n’est pas envoyée depuis le contrôleur vers la vue.
+Solution : ajouter compact('plats') ou passer un tableau associatif lors
+du return view().
+
+5.2 Gestion des Vues Admin
+
+-   Nécessité d’intégrer un template (AdminKit par exemple).
+-   Uniformisation du design.
+-   Organisation claire par entité : index, create, edit, show.
+
+6. Organisation des Tables (Base de Données)
+
+Exemples de tables : - plats - lieux - danses - evenements -
+categories - images - users - logs
+
+Chacune contient champs standards : id, nom, description, image, statut,
+timestamps.
+
+7. Vision Globale
+
+Le projet vise à devenir une référence digitale de la culture béninoise.
+Il doit être évolutif, facile à maintenir et prêt à accueillir de
+nouvelles catégories (musées, artistes, proverbes, etc.).
+
+8. Conclusion
+
+Le Projet Culture est une plateforme complète combinant gestion
+administrative et mise en valeur culturelle.
+Cette documentation résume l’essentiel pour comprendre le
+fonctionnement, l’architecture et les objectifs du système.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+🎯 1. OBJECTIF GLOBAL DU PROJET
+
+Le Projet Culture est une plateforme web dont le but est de promouvoir, présenter et organiser la culture (évènements, articles, galeries, documents, etc.).
+L’idée est d’avoir :
+
+un site public simple et élégant
+
+un dashboard admin pour gérer les contenus
+
+une architecture moderne (Laravel, peut-être Vue.js)
+
+un hébergement gratuit type Railway
+
+L’expérience doit être fluide, visuellement propre, professionnelle et surtout FACILE à gérer par l’admin.
+
+🎨 2. DESIGN & INTERFACE UTILISATEUR
+
+Tu veux un style :
+
+simple
+
+moderne
+
+fluide
+
+propre
+
+avec une forte identité visuelle
+
+inspiré de sites comme https://jeffersonglele
+
+mais sans copier
+
+✔️ Principes de design retenus :
+
+Navbar fixe, minimaliste, transparente ou blanche
+
+Logo à gauche, cliquable vers l’accueil
+
+Sous-menus propres avec dropdown (Culture, Évènements, Galerie, Articles…)
+
+Un slider / hero section avec une grande image ou vidéo
+
+Sections bien espacées, beaucoup de white space
+
+Typographie moderne (Poppins, Inter ou Roboto)
+
+Palette douce :
+
+Blanc ✔️
+
+Noir profond ✔️
+
+Beige / Gold / Ou couleurs culturelles ✔️
+
+✔️ Pages publiques :
+
+Accueil
+
+Hero (image/vidéo)
+
+Présentation du projet
+
+Derniers évènements
+
+Derniers articles
+
+Galerie en mosaïque
+
+Appel à action : découvrir, participer…
+
+Évènements culturels
+
+Liste filtrable
+
+Fiche détaillée (date, lieu, affiches, vidéos)
+
+Articles / Actualités culturelles
+
+Blog complet
+
+Catégories
+
+Lecture article avec images
+
+Galerie médias
+
+Photos classées par thème
+
+Vidéos
+
+Carrousel / Modal fullscreen
+
+Documents / Ressources
+
+PDF téléchargeables
+
+Dossiers, études, rapports
+
+Contact
+
+Formulaire de contact
+
+Réseaux sociaux
+
+Adresse et Google Map
+
+✔️ Pages admin :
+
+Connexion admin (email + password)
+
+Dashboard mini-analytics
+
+Gestion des évènements
+
+Gestion des articles
+
+Gestion des galeries photos/vidéos
+
+Gestion des utilisateurs (si rôle multiple)
+
+Paramètres du site (logo, couleurs, textes)
+
+⚙️ 3. FONCTIONNALITÉS DÉTAILLÉES
+🔐 Authentification & Rôles
+
+Admin
+
+Éditeur (optionnel)
+
+Super admin (optionnel)
+
+Auth via :
+
+Laravel Breeze ou Jetstream
+
+Email + password
+
+Mot de passe oublié
+
+Middleware admin
+
+📰 Gestion des articles
+
+Créer / modifier / supprimer
+
+Éditeur riche (TinyMCE ou Trix)
+
+Ajouter images
+
+Catégories + Tags
+
+SEO :
+
+titre meta
+
+description
+
+slug automatique
+
+🎭 Gestion des évènements culturels
+
+Nom
+
+Description
+
+Date & heure
+
+Lieu
+
+Affiche de l’évènement
+
+Galerie d’images
+
+Vidéos YouTube intégrées
+
+Évènements passés / futurs
+
+🖼️ Gestion de la galerie
+
+Albums
+
+Photos
+
+Vidéos
+
+Tri / filtre par catégorie
+
+Upload multiples
+
+📁 Gestion des documents
+
+Upload PDF
+
+Titre + description
+
+Catégories (culture générale, musique, arts, danse…)
+
+Téléchargements comptabilisés
+
+👤 Espace admin
+
+Tableau de bord avec :
+
+Nombre d’articles
+
+Nombre d’évènements
+
+Nombre de médias
+
+Dernières activités
+
+Statistiques des vues (si tu veux)
+
+🌐 Frontend optimisé
+
+Navigation ultra fluide
+
+Mobile-first (responsive)
+
+Défilement doux
+
+Animations légères
+
+🗃️ 4. BASE DE DONNÉES
+✔️ TABLE users
+Champ	Type	Description
+id	int	PK
+name	varchar	nom complet
+email	varchar	unique
+password	varchar	hashé
+role	enum(admin, editor)	rôle
+created_at	timestamp	
+updated_at	timestamp	
+✔️ TABLE articles
+Champ	Type
+id	int
+title	varchar
+slug	varchar
+content	longtext
+image	varchar
+category_id	int
+user_id	int (auteur)
+published_at	datetime
+created_at	timestamp
+updated_at	timestamp
+✔️ TABLE categories
+
+| id | nom | slug |
+
+✔️ TABLE events
+Champ	Type
+id	int
+title	varchar
+slug	varchar
+description	text
+date	date
+time	time
+location	varchar
+poster	varchar
+created_at	timestamp
+updated_at	timestamp
+✔️ TABLE galleries
+
+| id | title | type(photo/video) | url | event_id nullable |
+
+✔️ TABLE documents
+
+| id | title | description | file | category_id |
+
+🏗️ 5. ARCHITECTURE DU PROJET
+✔️ Stack technique
+
+Laravel 11 (backend + API)
+
+MySQL (base de données)
+
+Vue.js 3 ou Blade + Tailwind pour le frontend
+
+Railway pour l’hébergement gratuit
+
+GitHub pour le versionnement
+
+GitHub Actions pour déploiement automatique (optionnel)
+
+📦 6. ROUTES (version simplifiée)
+🔓 Public
+
+GET / → Accueil
+
+GET /articles → Liste
+
+GET /articles/{slug}
+
+GET /events
+
+GET /events/{slug}
+
+GET /gallery
+
+GET /documents
+
+🔐 Admin
+
+GET /admin → Dashboard
+
+CRUD Articles
+
+CRUD Events
+
+CRUD Galerie
+
+CRUD Documents
+
+Settings
+
+🧪 7. POSSIBILITÉS FUTURES
+
+Tu peux ajouter :
+
+Système de newsletter
+
+API mobile pour version Android en Flutter
+
+Chatbot infos culturelles
+
+Mode sombre
+
+Système de commentaires
+
+Système de réservation d’évènements
+
+🚀 8. CONCLUSION
+
+Ton Projet Culture est une plateforme complète, moderne, puissante et évolutive, basée sur Laravel et pensée pour mettre en valeur la culture dans toute sa richesse : textes, évènements, galeries, documents, et contenu audiovisuel.
+
+L’expérience sera simple, classe, organisée, et facile à administrer.
+
+Et quand tu seras prêt… je t’aide à générer toute la structure Laravel, les migrations, les modèles, les contrôleurs, les vues, TOUT ce qu’il faut pour lancer ton site ! 😁🔥
