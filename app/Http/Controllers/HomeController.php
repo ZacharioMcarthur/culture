@@ -10,6 +10,16 @@ class HomeController extends Controller
     public function index()
     {
         // Récupérer les 6 derniers éléments de chaque catégorie actifs depuis la table contenus
+        // Récupérer les contenus par type (basé sur les vraies données de la DB)
+        $histoires = DB::table('contenus')
+            ->join('type_contenus', 'contenus.id_type_contenu', '=', 'type_contenus.id')
+            ->where('contenus.statut', 'valide')
+            ->where('type_contenus.nom_contenu', 'Histoire/Conte')
+            ->select('contenus.*', 'type_contenus.nom_contenu')
+            ->latest('contenus.created_at')
+            ->take(6)
+            ->get();
+
         $plats = DB::table('contenus')
             ->join('type_contenus', 'contenus.id_type_contenu', '=', 'type_contenus.id')
             ->where('contenus.statut', 'valide')
@@ -19,34 +29,15 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
-        $lieux = DB::table('contenus')
+        $articles = DB::table('contenus')
             ->join('type_contenus', 'contenus.id_type_contenu', '=', 'type_contenus.id')
             ->where('contenus.statut', 'valide')
             ->where('type_contenus.nom_contenu', 'Article culturel')
-            ->where('contenus.titre', 'like', '%lieu%')
             ->select('contenus.*', 'type_contenus.nom_contenu')
             ->latest('contenus.created_at')
             ->take(6)
             ->get();
 
-        $danses = DB::table('contenus')
-            ->join('type_contenus', 'contenus.id_type_contenu', '=', 'type_contenus.id')
-            ->where('contenus.statut', 'valide')
-            ->where('contenus.titre', 'like', '%danse%')
-            ->select('contenus.*', 'type_contenus.nom_contenu')
-            ->latest('contenus.created_at')
-            ->take(6)
-            ->get();
-
-        $evenements = DB::table('contenus')
-            ->join('type_contenus', 'contenus.id_type_contenu', '=', 'type_contenus.id')
-            ->where('contenus.statut', 'valide')
-            ->where('contenus.titre', 'like', '%festival%')
-            ->select('contenus.*', 'type_contenus.nom_contenu')
-            ->latest('contenus.created_at')
-            ->take(6)
-            ->get();
-
-        return view('home', compact('plats', 'lieux', 'danses', 'evenements'));
+        return view('home', compact('histoires', 'plats', 'articles'));
     }
 }

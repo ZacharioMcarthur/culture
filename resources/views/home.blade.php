@@ -52,7 +52,9 @@
                         <small class="text-muted">
                             <i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse($plat->date_creation)->format('d/m/Y') }}
                         </small>
-                        <a href="#" class="btn btn-jaune-benin mt-3">Découvrir la recette</a>
+                        <a href="{{ route('contents.index', 'plats') }}" class="btn btn-jaune-benin mt-3">
+                            <i class="fas fa-lock"></i> Découvrir (Connexion requise)
+                        </a>
                     </div>
                 </div>
             </div>
@@ -66,123 +68,84 @@
             </div>
             @endforelse
         </div>
-        <!-- Boutons temporaires supprimés - pages individuelles à créer -->
     </div>
 </section>
 
-<!-- Section Lieux Touristiques -->
-<section id="lieux" class="section-culture">
+<!-- Section Histoires et Contes -->
+<section id="histoires" class="section-culture">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="vert-benin">Lieux Touristiques</h2>
-            <p class="lead">Explorez les trésors cachés du Bénin</p>
+            <h2 class="vert-benin">Histoires et Contes Traditionnels</h2>
+            <p class="lead">Découvrez la richesse du patrimoine oral béninois</p>
         </div>
         <div class="row">
-            @forelse($lieux ?? [] as $lieu)
+            @forelse($histoires ?? [] as $histoire)
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="carte-culture">
                     <div style="height: 200px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-map-marked-alt fa-3x text-muted"></i>
+                        <i class="fas fa-book-open fa-3x text-muted"></i>
                     </div>
                     <div class="contenu">
-                        <h3>{{ $lieu->titre }}</h3>
-                        <p>{{ Str::limit($lieu->texte, 100) }}</p>
+                        <h3>{{ $histoire->titre }}</h3>
+                        <p>{{ Str::limit($histoire->texte, 100) }}</p>
                         <small class="text-muted">
-                            <i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse($lieu->date_creation)->format('d/m/Y') }}
+                            <i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse($histoire->date_creation)->format('d/m/Y') }}
                         </small>
-                        <a href="#" class="btn btn-jaune-benin mt-3">Découvrir ce lieu</a>
+                        <a href="{{ route('contents.index', 'histoires') }}" class="btn btn-jaune-benin mt-3">
+                            <i class="fas fa-lock"></i> Découvrir (Connexion requise)
+                        </a>
                     </div>
                 </div>
             </div>
             @empty
             <div class="col-12 text-center">
                 <div style="padding: 60px 20px;">
-                    <i class="fas fa-map-marked-alt fa-4x text-muted mb-3"></i>
-                    <h3 class="text-muted">Aucun lieu touristique disponible</h3>
-                    <p class="text-muted">Nous travaillons à référencer les plus beaux sites touristiques du Bénin.</p>
+                    <i class="fas fa-book-open fa-4x text-muted mb-3"></i>
+                    <h3 class="text-muted">Aucune histoire disponible pour le moment</h3>
+                    <p class="text-muted">Nous travaillons à recueillir les contes et légendes traditionnels du Bénin.</p>
                 </div>
             </div>
             @endforelse
         </div>
-        <div class="text-center mt-4">
-            <a href="#lieux" class="btn btn-vert-benin">Voir tous les lieux</a>
-        </div>
     </div>
 </section>
 
-<!-- Section Danses -->
-<section id="danses" class="section-culture bg-light">
+<!-- Section Articles Culturels -->
+<section id="articles" class="section-culture bg-light">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="vert-benin">Danses Traditionnelles</h2>
-            <p class="lead">Ressentez le rythme du Bénin</p>
+            <h2 class="vert-benin">Articles Culturels</h2>
+            <p class="lead">Explorez les trésors culturels du Bénin</p>
         </div>
         <div class="row">
-            @forelse($danses ?? [] as $danse)
+            @forelse($articles ?? [] as $article)
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="carte-culture">
                     <div style="height: 200px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-music fa-3x text-muted"></i>
+                        <i class="fas fa-landmark fa-3x text-muted"></i>
                     </div>
                     <div class="contenu">
-                        <h3>{{ $danse->titre }}</h3>
-                        <p>{{ Str::limit($danse->texte, 100) }}</p>
+                        <h3>{{ $article->titre }}</h3>
+                        <p>{{ Str::limit($article->texte, 100) }}</p>
                         <small class="text-muted">
-                            <i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse($danse->date_creation)->format('d/m/Y') }}
+                            <i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse($article->date_creation)->format('d/m/Y') }}
                         </small>
-                        <a href="#" class="btn btn-jaune-benin mt-3">Découvrir cette danse</a>
+                        <a href="{{ route('contents.index', 'articles') }}" class="btn btn-jaune-benin mt-3">
+                            <i class="fas fa-lock"></i> Découvrir (Connexion requise)
+                        </a>
                     </div>
                 </div>
             </div>
             @empty
             <div class="col-12 text-center">
                 <div style="padding: 60px 20px;">
-                    <i class="fas fa-music fa-4x text-muted mb-3"></i>
-                    <h3 class="text-muted">Aucune danse disponible pour le moment</h3>
-                    <p class="text-muted">Nous travaillons à présenter les danses traditionnelles du Bénin.</p>
+                    <i class="fas fa-landmark fa-4x text-muted mb-3"></i>
+                    <h3 class="text-muted">Aucun article disponible pour le moment</h3>
+                    <p class="text-muted">Nous travaillons à enrichir notre collection d'articles culturels sur le Bénin.</p>
                 </div>
             </div>
             @endforelse
         </div>
-        <!-- Boutons temporaires supprimés - pages individuelles à créer -->
-    </div>
-</section>
-
-<!-- Section Événements -->
-<section id="evenements" class="section-culture">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="vert-benin">Événements Culturels</h2>
-            <p class="lead">Participez aux célébrations du Bénin</p>
-        </div>
-        <div class="row">
-            @forelse($evenements ?? [] as $evenement)
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="carte-culture">
-                    <div style="height: 200px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-calendar-alt fa-3x text-muted"></i>
-                    </div>
-                    <div class="contenu">
-                        <h3>{{ $evenement->titre }}</h3>
-                        <p>{{ Str::limit($evenement->texte, 100) }}</p>
-                        <small class="text-muted">
-                            <i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse($evenement->date_creation)->format('d/m/Y') }}
-                        </small>
-                        <a href="#" class="btn btn-jaune-benin mt-3">Voir les détails</a>
-                    </div>
-                </div>
-            </div>
-            @empty
-            <div class="col-12 text-center">
-                <div style="padding: 60px 20px;">
-                    <i class="fas fa-calendar-alt fa-4x text-muted mb-3"></i>
-                    <h3 class="text-muted">Aucun événement prévu pour le moment</h3>
-                    <p class="text-muted">Restez connecté pour découvrir les prochains événements culturels du Bénin.</p>
-                </div>
-            </div>
-            @endforelse
-        </div>
-        <!-- Boutons temporaires supprimés - pages individuelles à créer -->
     </div>
 </section>
 
