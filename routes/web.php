@@ -40,6 +40,12 @@ Route::middleware('auth')->group(function () {
     // Paiements
     Route::post('/commande/{contenu}', [PaiementController::class, 'initier'])->name('paiement.initier');
     Route::post('/paiement/webhook', [PaiementController::class, 'webhook'])->name('paiement.webhook');
+
+    // Logout
+    Route::post('/logout', function () {
+        auth()->logout();
+        return redirect('/');
+    })->name('logout');
 });
 
 // Routes admin (préfixe admin/{nom_table})

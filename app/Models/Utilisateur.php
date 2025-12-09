@@ -28,8 +28,6 @@ class Utilisateur extends Authenticatable
         'id_langue',
         'remember_token',
         'email_verified_at',
-        'two_factor_enabled',
-        'two_factor_secret',
     ];
 
     protected $hidden = [
@@ -44,7 +42,7 @@ class Utilisateur extends Authenticatable
         'email_verified_at' => 'datetime',
         'statut' => 'integer',
         'two_factor_enabled' => 'boolean',
-        'mot_de_passe' => 'hashed',
+        // plus de cast 'hashed' sur mot_de_passe
     ];
 
     // Relations
@@ -83,34 +81,9 @@ class Utilisateur extends Authenticatable
         return $this->hasMany(Paiement::class, 'id_utilisateur', 'id');
     }
 
-    // Méthodes d'authentification
+    // Indique à Breeze/Fortify où lire le mot de passe
     public function getAuthPassword()
     {
         return $this->mot_de_passe;
-    }
-
-    public function getAuthIdentifierName()
-    {
-        return 'id';
-    }
-
-    public function getAuthIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    public function getRememberToken()
-    {
-        return $this->remember_token;
-    }
-
-    public function setRememberToken($value)
-    {
-        $this->remember_token = $value;
-    }
-
-    public function getRememberTokenName()
-    {
-        return 'remember_token';
     }
 }
