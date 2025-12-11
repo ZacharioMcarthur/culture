@@ -13,6 +13,7 @@
         "yajra/laravel-datatables-oracle": "^12.6",
         "ext-gd": "*",
         "ext-pdo_mysql": "*"
+        
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
