@@ -102,143 +102,218 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <div class="text-4xl font-bold text-gradient mb-2">12</div>
-                    <div class="text-gray-600">Départements</div>
+    <!-- Statistics Cards -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; border-left: 4px solid #3498db;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center" 
+                                         style="width: 50px; height: 50px; background: linear-gradient(135deg, #e3f2fd, #bbdefb);">
+                                        <i class="fas fa-users" style="font-size: 1.5rem; color: #1976d2;"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 ms-4">
+                                    <h5 class="mb-1" style="color: #7b8a8b; font-size: 0.9rem; font-weight: 500;">UTILISATEURS</h5>
+                                    <h2 class="mb-0" style="color: #2c3e50; font-weight: 700;">{{ \App\Models\User::count() }}</h2>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-decoration-none" 
+                               style="color: #3498db; font-weight: 500; font-size: 0.9rem;">
+                                Membres actifs
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <div class="text-4xl font-bold text-gradient mb-2">77</div>
-                    <div class="text-gray-600">Communes</div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; border-left: 4px solid #2ecc71;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center" 
+                                         style="width: 50px; height: 50px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+                                        <i class="fas fa-language" style="font-size: 1.5rem; color: #388e3c;"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 ms-4">
+                                    <h5 class="mb-1" style="color: #7b8a8b; font-size: 0.9rem; font-weight: 500;">LANGUES</h5>
+                                    <h2 class="mb-0" style="color: #2c3e50; font-weight: 700;">{{ \App\Models\Langue::count() }}</h2>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-decoration-none" 
+                               style="color: #2ecc71; font-weight: 500; font-size: 0.9rem;">
+                                Langues béninoises
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <div class="text-4xl font-bold text-gradient mb-2">30+</div>
-                    <div class="text-gray-600">Langues</div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; border-left: 4px solid #f1c40f;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                         style="width: 50px; height: 50px; background: linear-gradient(135deg, #fef9e7, #f9e79f);">
+                                        <i class="fas fa-map-marked-alt" style="font-size: 1.5rem; color: #d4ac0d;"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 ms-4">
+                                    <h5 class="mb-1" style="color: #7b8a8b; font-size: 0.9rem; font-weight: 500;">RÉGIONS</h5>
+                                    <h2 class="mb-0" style="color: #2c3e50; font-weight: 700;">12</h2>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-decoration-none"
+                               style="color: #f1c40f; font-weight: 500; font-size: 0.9rem;">
+                                Couverture nationale
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <div class="text-4xl font-bold text-gradient mb-2">100+</div>
-                    <div class="text-gray-600">Contenus culturels</div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; border-left: 4px solid #e74c3c;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center" 
+                                         style="width: 50px; height: 50px; background: linear-gradient(135deg, #f9ebea, #f5b7b1);">
+                                        <i class="fas fa-book-open" style="font-size: 1.5rem; color: #c0392b;"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 ms-4">
+                                    <h5 class="mb-1" style="color: #7b8a8b; font-size: 0.9rem; font-weight: 500;">CONTENUS</h5>
+                                    <h2 class="mb-0" style="color: #2c3e50; font-weight: 700;">{{ \App\Models\Contenu::count() }}</h2>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-decoration-none" 
+                               style="color: #e74c3c; font-weight: 500; font-size: 0.9rem;">
+                                Articles publiés
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contenus Récents -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4">Contenus Récents</h2>
-                <p class="text-xl text-gray-600">Découvrez les dernières publications sur notre culture</p>
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-center mb-5">Contenus Récents</h2>
+                </div>
             </div>
             
             @if(isset($contenusRecents) && $contenusRecents->count() > 0)
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="row">
                     @foreach($contenusRecents as $contenu)
-                        <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                            @if($contenu->medias->first())
-                                <img src="{{ asset('storage/' . $contenu->medias->first()->chemin) }}" 
-                                     class="w-full h-48 object-cover" alt="{{ $contenu->titre }}">
-                            @else
-                                <div class="w-full h-48 bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
-                                    <i class="fas fa-image text-4xl text-purple-300"></i>
-                                </div>
-                            @endif
-                            <div class="p-6">
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="bg-purple-100 text-purple-600 text-xs px-3 py-1 rounded-full">
-                                        {{ $contenu->categorie->nom ?? 'Article' }}
-                                    </span>
-                                    @if($contenu->statut === 'payant')
-                                        <span class="bg-yellow-100 text-yellow-600 text-xs px-3 py-1 rounded-full">
-                                            <i class="fas fa-crown mr-1"></i>Premium
-                                        </span>
-                                    @endif
-                                </div>
-                                <h3 class="text-xl font-semibold mb-2">{{ $contenu->titre }}</h3>
-                                <p class="text-gray-600 mb-4">{{ Str::limit(strip_tags($contenu->contenu), 120) }}</p>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm text-gray-500">
-                                        <i class="fas fa-eye mr-1"></i>{{ $contenu->vues ?? 0 }} vues
-                                    </span>
-                                    <a href="{{ route('contenus.details', $contenu->slug ?? $contenu->id) }}" class="text-purple-600 hover:text-purple-800 font-semibold">
-                                        Lire la suite <i class="fas fa-arrow-right ml-1"></i>
-                                    </a>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                @if($contenu->medias->first())
+                                    <img src="{{ asset('storage/' . $contenu->medias->first()->chemin) }}" 
+                                         class="card-img-top" alt="{{ $contenu->titre }}" style="height: 200px; object-fit: cover;">
+                                @else
+                                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
+                                         style="height: 200px;">
+                                        <i class="fas fa-image fa-3x text-muted"></i>
+                                    </div>
+                                @endif
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">{{ Str::limit($contenu->titre, 50) }}</h5>
+                                    <p class="card-text">{{ Str::limit(strip_tags($contenu->contenu), 100) }}</p>
+                                    <div class="mt-auto">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="badge bg-primary">{{ $contenu->categorie->nom ?? 'Article' }}</span>
+                                            @if($contenu->statut === 'payant')
+                                                <span class="badge bg-warning">
+                                                    <i class="fas fa-crown"></i> Premium
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <a href="{{ route('contenus.details', $contenu->slug ?? $contenu->id) }}" class="btn btn-outline-primary">
+                                            Lire la suite
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
                 
-                <div class="text-center mt-12">
-                    <a href="{{ route('contenus.tous') }}" class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
-                        Voir tous les contenus <i class="fas fa-arrow-right ml-2"></i>
+                <div class="text-center mt-4">
+                    <a href="{{ route('contenus.tous') }}" class="btn btn-primary">
+                        Voir tous les contenus <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             @else
-                <div class="text-center py-12">
-                    <i class="fas fa-newspaper text-6xl text-gray-300 mb-4"></i>
-                    <h3 class="text-2xl font-semibold text-gray-600 mb-2">Aucun contenu disponible</h3>
-                    <p class="text-gray-500">Revenez bientôt pour découvrir de nouveaux contenus culturels.</p>
+                <div class="text-center py-5">
+                    <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
+                    <h4>Aucun contenu disponible</h4>
+                    <p class="text-muted">Revenez bientôt pour découvrir de nouveaux contenus.</p>
                 </div>
             @endif
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4">Pourquoi nous choisir ?</h2>
-                <p class="text-xl text-gray-600">Une expérience culturelle unique et immersive</p>
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-center mb-5">Pourquoi nous choisir ?</h2>
+                </div>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 feature-icon">
-                        <i class="fas fa-book text-3xl text-purple-600"></i>
+            <div class="row">
+                <div class="col-md-4 text-center mb-4">
+                    <div class="feature-box">
+                        <i class="fas fa-book fa-3x text-primary mb-3"></i>
+                        <h5>Contenus de Qualité</h5>
+                        <p class="text-muted">Articles rédigés par des experts de la culture béninoise.</p>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Contenus Authentiques</h3>
-                    <p class="text-gray-600">Articles rédigés par des experts et passionnés de la culture béninoise.</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 feature-icon">
-                        <i class="fas fa-photo-video text-3xl text-purple-600"></i>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="feature-box">
+                        <i class="fas fa-photo-video fa-3x text-primary mb-3"></i>
+                        <h5>Médias Riches</h5>
+                        <p class="text-muted">Photos, vidéos et documents pour une expérience immersive.</p>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Médias Riches</h3>
-                    <p class="text-gray-600">Photos, vidéos et documents pour une expérience immersive et complète.</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 feature-icon">
-                        <i class="fas fa-crown text-3xl text-purple-600"></i>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="feature-box">
+                        <i class="fas fa-crown fa-3x text-primary mb-3"></i>
+                        <h5>Contenus Exclusifs</h5>
+                        <p class="text-muted">Accédez à des contenus premium à partir de 100 FCFA.</p>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Contenus Exclusifs</h3>
-                    <p class="text-gray-600">Accédez à des contenus premium à partir de 100 FCFA seulement.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 hero-gradient text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-4">Rejoignez notre communauté culturelle</h2>
-            <p class="text-xl mb-8 text-white/90">
-                Inscrivez-vous dès maintenant pour accéder à tous nos contenus et recevoir les dernières actualités culturelles du Bénin.
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="mb-4">Rejoignez notre communauté</h2>
+            <p class="lead mb-4">
+                Inscrivez-vous pour accéder à tous nos contenus et recevoir les dernières actualités culturelles.
             </p>
             @if(!Auth::check())
-                <div class="flex flex-wrap gap-4 justify-center">
-                    <a href="{{ route('register') }}" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
-                        <i class="fas fa-user-plus mr-2"></i>S'inscrire gratuitement
+                <div class="d-flex gap-2 justify-content-center">
+                    <a href="{{ route('register') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-user-plus"></i> S'inscrire
                     </a>
-                    <a href="{{ route('login') }}" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Se connecter
+                    <a href="{{ route('login') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-sign-in-alt"></i> Se connecter
                     </a>
                 </div>
             @else
-                <a href="{{ route('contenus.tous') }}" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
-                    <i class="fas fa-compass mr-2"></i>Explorer les contenus
+                <a href="{{ route('contenus.tous') }}" class="btn btn-light btn-lg">
+                    <i class="fas fa-compass"></i> Explorer les contenus
                 </a>
             @endif
         </div>
