@@ -78,10 +78,10 @@
                     </a>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <a href="#" class="text-blue-700 hover:text-blue-900 font-medium">
+                    <a href="{{ route('login') }}" class="text-blue-700 hover:text-blue-900 font-medium px-4 py-2 rounded-lg border border-blue-700 hover:bg-blue-50 transition">
                         <i class="fas fa-sign-in-alt mr-2"></i>Connexion
                     </a>
-                    <a href="#" class="bg-gradient-to-r from-blue-700 to-blue-900 text-white px-5 py-2.5 rounded-lg font-medium hover:from-blue-800 hover:to-blue-950 transition shadow-md">
+                    <a href="{{ route('register') }}" class="bg-gradient-to-r from-blue-700 to-blue-900 text-white px-5 py-2.5 rounded-lg font-medium hover:from-blue-800 hover:to-blue-950 transition shadow-md">
                         <i class="fas fa-user-plus mr-2"></i>Inscription
                     </a>
                     <button class="lg:hidden text-gray-800">
@@ -92,9 +92,18 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient text-white pt-16 pb-24 overflow-hidden">
-        <div class="container mx-auto px-4">
+    <!-- Hero Section with Video Background -->
+    <section class="hero-gradient text-white pt-16 pb-24 overflow-hidden relative">
+        <!-- Video Background -->
+        <div class="absolute inset-0 z-0">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                <source src="{{ asset('videos/ouidah-presentation.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-blue-700/60"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="relative z-10">
                     <div class="inline-block mb-4 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full">
@@ -159,6 +168,120 @@
                                 </a>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultural Gallery Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-3xl font-bold text-gray-800 inline-block">Découvrez notre Richesse Culturelle</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-4">
+                    Explorez les trésors culturels du Bénin à travers notre galerie d'images et vidéos
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Gallery Items -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                    <img src="{{ asset('images/Abomey_royal_palace_wall.jpg') }}" alt="Palais Royal d'Abomey" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h4 class="font-bold text-lg">Palais Royal d'Abomey</h4>
+                            <p class="text-sm">Site classé UNESCO</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                    <img src="{{ asset('images/Village-lacustre-ganvie.jpg') }}" alt="Village Lacustre Ganvié" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h4 class="font-bold text-lg">Village Lacustre Ganvié</h4>
+                            <p class="text-sm">Venise d'Afrique</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                    <img src="{{ asset('images/parc-pendjari.jpg') }}" alt="Parc National Pendjari" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h4 class="font-bold text-lg">Parc National Pendjari</h4>
+                            <p class="text-sm">Réserve naturelle</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                    <img src="{{ asset('images/Temple_de_python_de_kpétou_gbo.png') }}" alt="Temple des Pythons" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h4 class="font-bold text-lg">Temple des Pythons</h4>
+                            <p class="text-sm">Site sacré d'Ouidah</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                    <img src="{{ asset('images/Grande_Mosquee_de_Porto-Novo.jpg') }}" alt="Grande Mosquée de Porto-Novo" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h4 class="font-bold text-lg">Grande Mosquée</h4>
+                            <p class="text-sm">Porto-Novo</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                    <img src="{{ asset('images/Beach_of_Ouidah_Benin.jpg') }}" alt="Plage d'Ouidah" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h4 class="font-bold text-lg">Plage d'Ouidah</h4>
+                            <p class="text-sm">Côte historique</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video Section -->
+            <div class="bg-gray-50 rounded-xl p-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Découvrez nos Danses Traditionnelles</h3>
+                        <p class="text-gray-600 mb-6">
+                            Plongez au cœur de la culture béninoise avec nos vidéos de danses traditionnelles, 
+                            cérémonies et festivals qui célèbrent notre riche patrimoine.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-music text-orange-600"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">Danse Agbadja</h5>
+                                    <p class="text-sm text-gray-600">Tradition du peuple Fon</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-drum text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">Rythmes Sacrés</h5>
+                                    <p class="text-sm text-gray-600">Cérémonies vodoun</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative rounded-xl overflow-hidden shadow-lg">
+                        <video controls class="w-full h-64 object-cover">
+                            <source src="{{ asset('videos/egoun.mp4') }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
             </div>
