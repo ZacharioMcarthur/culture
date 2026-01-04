@@ -41,40 +41,42 @@
                                 <input type="text" class="form-control" id="etablissement">
                             </div>
                         </div>
-                        
-                        <div class="mb-3">
-                            <label for="sujet" class="form-label">Sujet *</label>
-                            <select class="form-select" id="sujet" required>
-                                <option value="">Choisissez un sujet</option>
-                                <option>Information générale</option>
-                                <option>Support technique</option>
-                                <option>Partenariat</option>
-                                <option>Inscription établissement</option>
-                                <option>Signaler un problème</option>
-                                <option>Autre</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Message *</label>
-                            <textarea class="form-control" id="message" rows="6" required></textarea>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="newsletter">
-                                <label class="form-check-label" for="newsletter">
-                                    Je souhaite recevoir la newsletter et les actualités de la plateforme
-                                </label>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Numéro de téléphone</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required
+                                       placeholder="229 XX XX XX XX">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="institution" class="form-label">Institution (optionnel)</label>
+                                <input type="text" class="form-control" id="institution" name="institution"
+                                       placeholder="Université, École, etc.">
                             </div>
                         </div>
-                        
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="reset" class="btn btn-outline-secondary">
-                                <i class="fas fa-times me-2"></i>Effacer
-                            </button>
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-paper-plane me-2"></i>Envoyer le message
+
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Sujet</label>
+                            <select class="form-select" id="subject" name="subject" required>
+                                <option value="">Choisissez un sujet</option>
+                                <option value="information">Demande d'information</option>
+                                <option value="collaboration">Proposition de collaboration</option>
+                                <option value="technical">Problème technique</option>
+                                <option value="suggestion">Suggestion</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required
+                                      placeholder="Décrivez votre demande en détail..."></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">
+                                <i class="fas fa-paper-plane me-2"></i>
+                                Envoyer le message
                             </button>
                         </div>
                     </form>
@@ -84,167 +86,130 @@
 
         <!-- Contact Info -->
         <div class="col-lg-4 mb-4">
-            <div class="card border-0 shadow-sm mb-4" style="border-radius: 16px;">
-                <div class="card-body p-4">
-                    <h5 class="card-title mb-4" style="color: #0A2E5C; font-weight: 600;">Informations de contact</h5>
-                    
-                    <div class="d-flex align-items-start mb-4">
-                        <div class="rounded-circle bg-primary bg-opacity-10 flex items-center justify-center me-3" 
-                             style="width: 40px; height: 40px;">
-                            <i class="fas fa-map-marker-alt text-primary"></i>
-                        </div>
-                        <div>
-                            <h6 class="mb-1">Adresse</h6>
-                            <p class="text-muted mb-0">
-                                Cotonou, Bénin<br>
-                                Quartier des Ministères<br>
-                                Immeuble Culture Bénin
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="d-flex align-items-start mb-4">
-                        <div class="rounded-circle bg-success bg-opacity-10 flex items-center justify-center me-3" 
-                             style="width: 40px; height: 40px;">
-                            <i class="fas fa-phone text-success"></i>
-                        </div>
-                        <div>
-                            <h6 class="mb-1">Téléphone</h6>
-                            <p class="text-muted mb-0">
-                                +229 01 46 62 03 46<br>
-                                +229 97 84 52 31 78
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="d-flex align-items-start mb-4">
-                        <div class="rounded-circle bg-warning bg-opacity-10 flex items-center justify-center me-3" 
-                             style="width: 40px; height: 40px;">
-                            <i class="fas fa-envelope text-warning"></i>
-                        </div>
-                        <div>
-                            <h6 class="mb-1">Email</h6>
-                            <p class="text-muted mb-0">
-                                nascimentozachario@gmail.com<br>
-                                support@culturebenin.bj
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="d-flex align-items-start">
-                        <div class="rounded-circle bg-info bg-opacity-10 flex items-center justify-center me-3" 
-                             style="width: 40px; height: 40px;">
-                            <i class="fas fa-clock text-info"></i>
-                        </div>
-                        <div>
-                            <h6 class="mb-1">Heures d'ouverture</h6>
-                            <p class="text-muted mb-0">
-                                Lundi - Vendredi: 8h00 - 18h00<br>
-                                Samedi: 9h00 - 14h00<br>
-                                Dimanche: Fermé
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Links -->
             <div class="card border-0 shadow-sm" style="border-radius: 16px;">
                 <div class="card-body p-4">
-                    <h5 class="card-title mb-4" style="color: #0A2E5C; font-weight: 600;">Liens rapides</h5>
+                    <h5 class="card-title mb-4" style="color: #0A2E5C;">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        Coordonnées
+                    </h5>
                     
-                    <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action border-0 px-0">
-                            <i class="fas fa-question-circle text-primary me-2"></i>
-                            Centre d'aide
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action border-0 px-0">
-                            <i class="fas fa-book text-primary me-2"></i>
-                            Documentation
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action border-0 px-0">
-                            <i class="fas fa-users text-primary me-2"></i>
-                            Communauté
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action border-0 px-0">
-                            <i class="fas fa-shield-alt text-primary me-2"></i>
-                            Politique de confidentialité
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action border-0 px-0">
-                            <i class="fas fa-file-contract text-primary me-2"></i>
-                            Conditions d'utilisation
-                        </a>
+                    <div class="contact-info mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="contact-icon me-3">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <strong>Adresse</strong><br>
+                                <span>Cotonou, Bénin</span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="contact-icon me-3">
+                                <i class="fas fa-phone text-primary"></i>
+                            </div>
+                            <div>
+                                <strong>Téléphone</strong><br>
+                                <span>+229 01 23 45 67 89</span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="contact-icon me-3">
+                                <i class="fas fa-envelope text-primary"></i>
+                            </div>
+                            <div>
+                                <strong>Email</strong><br>
+                                <span>contact@culturebenin.bj</span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center">
+                            <div class="contact-icon me-3">
+                                <i class="fas fa-clock text-primary"></i>
+                            </div>
+                            <div>
+                                <strong>Heures d'ouverture</strong><br>
+                                <span>Lun-Ven: 8h-18h<br>Sam: 9h-13h</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-links">
+                        <h6 class="mb-3">Liens rapides</h6>
+                        <div class="d-grid gap-2">
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-book me-1"></i>
+                                Documentation
+                            </a>
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-question-circle me-1"></i>
+                                FAQ
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- FAQ Section -->
-    <div class="row mt-5">
+        <!-- FAQ Section -->
         <div class="col-12">
             <div class="card border-0 shadow-sm" style="border-radius: 16px;">
-                <div class="card-header bg-white border-0 pt-4 pb-0">
-                    <h5 class="card-title mb-0" style="color: #0A2E5C; font-weight: 600;">Questions fréquentes</h5>
-                </div>
-                <div class="card-body">
+                <div class="card-body p-5">
+                    <h5 class="card-title mb-4" style="color: #0A2E5C;">
+                        <i class="fas fa-question-circle me-2"></i>
+                        Questions Fréquemment Posées
+                    </h5>
+                    
                     <div class="accordion" id="faqAccordion">
-                        <div class="accordion-item border-0 mb-3">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                    Comment inscrire mon établissement sur la plateforme ?
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Comment puis-je accéder aux contenus culturels?
                                 </button>
                             </h2>
-                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Pour inscrire votre établissement, cliquez sur le bouton "Inscrire mon établissement" 
-                                    dans la page des établissements. Remplissez le formulaire avec les informations 
-                                    requises et notre équipe vous contactera dans les 48h pour valider votre inscription.
+                                    Vous pouvez accéder à tous nos contenus culturels en naviguant sur notre site web. Certains contenus premium peuvent nécessiter un paiement de 100F pour un accès complet.
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="accordion-item border-0 mb-3">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                    Quels types d'événements puis-je publier ?
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Comment puis-je contribuer à la plateforme?
                                 </button>
                             </h2>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Vous pouvez publier tous types d'événements académiques : examens, journées spéciales, 
-                                    inscriptions, réunions parents-professeurs, séminaires, conférences, et toute autre 
-                                    activité pertinente pour la communauté éducative.
+                                    Vous pouvez contribuer en nous contactant via le formulaire ci-dessus ou en nous envoyant des contenus culturels que vous souhaitez partager avec la communauté.
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="accordion-item border-0 mb-3">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                    La plateforme est-elle gratuite ?
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Comment fonctionne le paiement Feedapay?
                                 </button>
                             </h2>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Oui, l'inscription et l'utilisation de base de la plateforme sont entièrement gratuites 
-                                    pour tous les établissements académiques du Bénin. Des fonctionnalités premium 
-                                    peuvent être proposées à l'avenir.
+                                    Le paiement Feedapay est sécurisé et instantané. Après avoir payé 100F, vous aurez immédiatement accès aux fonctionnalités premium du contenu sélectionné.
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="accordion-item border-0">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-                                    Comment signaler un contenu inapproprié ?
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Puis-je télécharger les contenus?
                                 </button>
                             </h2>
-                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Chaque événement dispose d'un bouton de signalement. Vous pouvez également nous 
-                                    contacter directement par email à support@culturebenin.bj pour signaler tout contenu 
-                                    inapproprié ou abusif.
+                                    Le téléchargement des contenus est disponible pour les utilisateurs premium après paiement. Les contenus gratuits peuvent être partagés via les réseaux sociaux.
                                 </div>
                             </div>
                         </div>
@@ -256,49 +221,50 @@
 </div>
 @endsection
 
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@endpush
+
 @push('styles')
 <style>
-.accordion-button {
-    background-color: #f8f9fa;
-    color: #0A2E5C;
-    font-weight: 600;
-}
-
-.accordion-button:not(.collapsed) {
-    background-color: rgba(10, 46, 92, 0.1);
-    color: #0A2E5C;
-}
-
-.accordion-button:focus {
-    box-shadow: 0 0 0 0.2rem rgba(10, 46, 92, 0.25);
-}
-
-.accordion-item {
-    border: 1px solid #e9ecef;
-    border-radius: 12px !important;
-}
-
-.form-control:focus {
-    border-color: #0A2E5C;
-    box-shadow: 0 0 0 0.2rem rgba(10, 46, 92, 0.25);
-}
-
-.btn-primary {
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     background: linear-gradient(135deg, #0A2E5C, #1A5F9E);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.contact-info {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.accordion-button {
+    background: none;
     border: none;
+    text-align: left;
+    width: 100%;
+    padding: 1rem;
+    font-weight: 600;
+    color: #0A2E5C;
 }
 
-.btn-primary:hover {
-    background: linear-gradient(135deg, #1A5F9E, #0A2E5C);
+.accordion-button:hover {
+    background-color: #f8f9fa;
 }
 
-.list-group-item {
-    transition: all 0.2s ease;
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.list-group-item:hover {
-    background-color: rgba(10, 46, 92, 0.05);
-    transform: translateX(4px);
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 </style>
 @endpush

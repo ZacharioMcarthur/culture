@@ -14,12 +14,23 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ContenuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PlatController;
+use App\Http\Controllers\LieuController;
+use App\Http\Controllers\DanseController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 // Routes publiques
 Route::get('/', [ContenuController::class, 'accueil'])->name('accueil');
 Route::get('/contenus/{slug}', [ContenuController::class, 'details'])->name('contenus.details');
 Route::get('/contenus/tous', [ContenuController::class, 'tous'])->name('contenus.tous');
+
+// Routes culturelles
+Route::get('/plats', [PlatController::class, 'index'])->name('plats.index');
+Route::get('/lieux', [LieuController::class, 'index'])->name('lieux.index');
+Route::get('/danses', [DanseController::class, 'index'])->name('danses.index');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::get('/medias', [ContenuController::class, 'mediasIndex'])->name('medias.index');
 
 // Routes d'authentification (Breeze)
 require __DIR__.'/auth.php';
@@ -40,6 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/payment/initiate/{contenuId}', [PaymentController::class, 'initiate'])->name('payment.initiate');
     Route::get('/payment/history', [PaymentController::class, 'history'])->name('payment.history');
     Route::get('/payment/callback', [PaymentController::class, 'callback'])->name('payment.callback');
+    Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
+    Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
     // Commentaires
     Route::post('/commentaires/user-store', [\App\Http\Controllers\ContenuController::class, 'storeCommentaire'])->name('commentaires.userStore');

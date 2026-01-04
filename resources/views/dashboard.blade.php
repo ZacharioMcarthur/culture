@@ -6,18 +6,561 @@
 <div class="container-fluid py-4">
     <!-- Header -->
     <div class="row mb-4">
-        <div class="col-md-8">
-            <h1 class="h3 mb-0" style="color: #0A2E5C; font-weight: 700;">Tableau de Bord</h1>
-            <p class="text-muted mb-0">Vue d'ensemble de votre plateforme académique</p>
+        <div class="col-sm-8">
+            <h3 class="mb-0" style="color: #0A2E5C; font-weight: 700;">Tableau de Bord</h3>
+            <p class="text-muted mb-0" style="font-size: 0.9rem;">Vue d'ensemble de la plateforme</p>
         </div>
-        <div class="col-md-4 text-end">
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-primary">
-                    <i class="fas fa-download me-2"></i>Exporter
-                </button>
-                <button type="button" class="btn btn-primary">
-                    <i class="fas fa-plus me-2"></i>Nouvel événement
-                </button>
+        <div class="col-sm-4">
+            <ol class="breadcrumb" style="justify-content: flex-end; margin-bottom: 0;">
+                <li class="breadcrumb-item"><a href="#" style="color: #6c757d; text-decoration: none;">Dashboard</a></li>
+                <li class="breadcrumb-item active" style="color: #3498db; font-weight: 500;">Accueil</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Cards Statistiques -->
+    <div class="row mb-5">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; border-left: 4px solid #3498db;">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center" 
+                                 style="width: 50px; height: 50px; background: linear-gradient(135deg, #e3f2fd, #bbdefb);">
+                                <i class="bi bi-people-fill" style="font-size: 1.5rem; color: #1976d2;"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-4">
+                            <h5 class="mb-1" style="color: #7b8a8b; font-size: 0.9rem; font-weight: 500;">UTILISATEURS</h5>
+                            <h2 class="mb-0" style="color: #2c3e50; font-weight: 700;">{{ $totalUsers ?? '0' }}</h2>
+                        </div>
+                    </div>
+                    <a href="{{ route('users.index') }}" class="d-block mt-3 text-decoration-none" 
+                       style="color: #3498db; font-weight: 500; font-size: 0.9rem;">
+                        Voir détails →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; border-left: 4px solid #2ecc71;">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center" 
+                                 style="width: 50px; height: 50px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+                                <i class="bi bi-translate" style="font-size: 1.5rem; color: #388e3c;"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-4">
+                            <h5 class="mb-1" style="color: #7b8a8b; font-size: 0.9rem; font-weight: 500;">CONTENUS</h5>
+                            <h2 class="mb-0" style="color: #2c3e50; font-weight: 700;">{{ $totalContenus ?? '0' }}</h2>
+                        </div>
+                    </div>
+                    <a href="{{ route('contenus.index') }}" class="d-block mt-3 text-decoration-none" 
+                       style="color: #2ecc71; font-weight: 500; font-size: 0.9rem;">
+                        Voir détails →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; border-left: 4px solid #f1c40f;">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                 style="width: 50px; height: 50px; background: linear-gradient(135deg, #fef9e7, #f9e79f);">
+                                <i class="bi bi-geo-alt-fill" style="font-size: 1.5rem; color: #d4ac0d;"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-4">
+                            <h5 class="mb-1" style="color: #7b8a8b; font-size: 0.9rem; font-weight: 500;">RÉGIONS</h5>
+                            <h2 class="mb-0" style="color: #2c3e50; font-weight: 700;">{{ $totalRegions ?? '0' }}</h2>
+                        </div>
+                    </div>
+                    <a href="{{ route('regions.index') }}" class="d-block mt-3 text-decoration-none"
+                       style="color: #f1c40f; font-weight: 500; font-size: 0.9rem;">
+                        Voir détails →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; border-left: 4px solid #e74c3c;">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center" 
+                                 style="width: 50px; height: 50px; background: linear-gradient(135deg, #f9ebea, #f5b7b1);">
+                                <i class="bi bi-journal-bookmark-fill" style="font-size: 1.5rem; color: #c0392b;"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-4">
+                            <h5 class="mb-1" style="color: #7b8a8b; font-size: 0.9rem; font-weight: 500;">MÉDIAS</h5>
+                            <h2 class="mb-0" style="color: #2c3e50; font-weight: 700;">{{ $totalMedias ?? '0' }}</h2>
+                        </div>
+                    </div>
+                    <a href="{{ route('medias.index') }}" class="d-block mt-3 text-decoration-none" 
+                       style="color: #e74c3c; font-weight: 500; font-size: 0.9rem;">
+                        Voir détails →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graphiques -->
+    <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 12px;">
+                <div class="card-body p-3 d-flex flex-column">
+                    <h6 class="mb-3" style="color: #2c3e50; font-weight: 600; font-size: 0.95rem;">
+                        <i class="bi bi-people me-2" style="color: #3498db;"></i>
+                        Utilisateurs
+                    </h6>
+                    <div id="usersChart" class="flex-grow-1 d-flex justify-content-center align-items-center" style="height: 250px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 12px;">
+                <div class="card-body p-3 d-flex flex-column">
+                    <h6 class="mb-3" style="color: #2c3e50; font-weight: 600; font-size: 0.95rem;">
+                        <i class="bi bi-translate me-2" style="color: #2ecc71;"></i>
+                        Contenus
+                    </h6>
+                    <div id="contenusChart" class="flex-grow-1 d-flex justify-content-center align-items-center" style="height: 250px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 12px;">
+                <div class="card-body p-3 d-flex flex-column">
+                    <h6 class="mb-3" style="color: #2c3e50; font-weight: 600; font-size: 0.95rem;">
+                        <i class="bi bi-geo-alt me-2" style="color: #f1c40f;"></i>
+                        Régions
+                    </h6>
+                    <div id="regionsChart" class="flex-grow-1 d-flex justify-content-center align-items-center" style="height: 250px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 12px;">
+                <div class="card-body p-3 d-flex flex-column">
+                    <h6 class="mb-3" style="color: #2c3e50; font-weight: 600; font-size: 0.95rem;">
+                        <i class="bi bi-journal me-2" style="color: #e74c3c;"></i>
+                        Médias
+                    </h6>
+                    <div id="mediasChart" class="flex-grow-1 d-flex justify-content-center align-items-center" style="height: 250px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm" style="border-radius: 12px;">
+                <div class="card-body p-4">
+                    <h5 class="mb-4" style="color: #2c3e50; font-weight: 600;">
+                        <i class="bi bi-clock-history me-2" style="color: #3498db;"></i>
+                        Activité Récente
+                    </h5>
+                    <div class="timeline">
+                        @forelse ($recentActivities as $activity)
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center me-3" 
+                                 style="width: 40px; height: 40px; flex-shrink: 0;">
+                                <i class="bi bi-person-plus text-primary"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1 fw-semibold">{{ $activity->title }}</h6>
+                                        <p class="text-muted small mb-0">{{ $activity->description }}</p>
+                                    </div>
+                                    <small class="text-muted">{{ $activity->time }}</small>
+                                </div>
+                            </div>
+                        </div>
+                        @empty
+                        <div class="text-center text-muted py-4">
+                            <i class="bi bi-inbox fs-2 mb-2 d-block"></i>
+                            <p>Aucune activité récente</p>
+                        </div>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm" style="border-radius: 12px;">
+                <div class="card-body p-4">
+                    <h5 class="mb-4" style="color: #2c3e50; font-weight: 600;">
+                        <i class="bi bi-star me-2" style="color: #f1c40f;"></i>
+                        Contenus Populaires
+                    </h5>
+                    <div class="list-group list-group-flush">
+                        @forelse ($popularContenus as $contenu)
+                        <div class="list-group-item px-0 border-bottom">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1 fw-semibold">{{ $contenu->titre }}</h6>
+                                    <div class="d-flex align-items-center text-muted small">
+                                        <i class="bi bi-eye me-1"></i>
+                                        <span>{{ $contenu->views }} vues</span>
+                                        <span class="mx-2">•</span>
+                                        <i class="bi bi-chat me-1"></i>
+                                        <span>{{ $contenu->comments }} commentaires</span>
+                                    </div>
+                                </div>
+                                <div class="text-end">
+                                    <span class="badge bg-warning text-dark">{{ $contenu->rating }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        @empty
+                        <div class="text-center text-muted py-4">
+                            <i class="bi bi-star fs-2 mb-2 d-block"></i>
+                            <p>Aucun contenu populaire</p>
+                        </div>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+<script>
+    // Données des totaux depuis le controller
+    const totalUsers = @json($totalUsers ?? 0);
+    const totalContenus = @json($totalContenus ?? 0);
+    const totalRegions = @json($totalRegions ?? 0);
+    const totalMedias = @json($totalMedias ?? 0);
+
+    // Données mensuelles simulées
+    const usersData = [12, 19, 15, 25, 22, 30, 28, 35, 32, 38, 42, 45];
+    const mois = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
+
+    // 1. Column Chart pour Utilisateurs
+    const usersOptions = {
+        series: [{
+            name: 'Nouveaux utilisateurs',
+            data: usersData
+        }],
+        chart: {
+            type: 'bar',
+            height: 280,
+            toolbar: { show: false },
+            animations: {
+                enabled: true,
+                easing: 'easeinout',
+                speed: 800
+            }
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 8,
+                columnWidth: '60%'
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+                return val > 0 ? Math.round(val) : '';
+            },
+            offsetY: -20,
+            style: {
+                fontSize: '11px',
+                fontWeight: 'bold',
+                colors: ["#5a5c69"]
+            }
+        },
+        xaxis: {
+            categories: mois,
+            labels: {
+                style: {
+                    colors: '#95a5a6',
+                    fontSize: '11px',
+                    fontWeight: 500
+                }
+            }
+        },
+        yaxis: {
+            labels: {
+                formatter: function (val) {
+                    return Math.round(val);
+                },
+                style: {
+                    colors: '#95a5a6',
+                    fontSize: '11px'
+                }
+            }
+        },
+        colors: ['#3498db'],
+        grid: {
+            borderColor: '#e7e7e7',
+            strokeDashArray: 4
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shade: 'light',
+                type: 'vertical',
+                shadeIntensity: 0.5,
+                gradientToColors: ['#2980b9'],
+                opacityFrom: 0.85,
+                opacityTo: 0.55
+            }
+        },
+        title: {
+            text: `Inscriptions (${totalUsers} total)`,
+            align: 'left',
+            style: {
+                fontSize: '16px',
+                fontWeight: '600',
+                color: '#2c3e50'
+            }
+        }
+    };
+
+    // 2. Donut Chart pour Contenus
+    const contenusOptions = {
+        series: [totalContenus, totalMedias],
+        chart: {
+            type: 'donut',
+            height: 280,
+            animations: {
+                enabled: true,
+                easing: 'easeinout',
+                speed: 800
+            }
+        },
+        labels: ['Contenus', 'Médias'],
+        colors: ['#2ecc71', '#e74c3c'],
+        legend: {
+            position: 'bottom',
+            fontSize: '12px',
+            fontWeight: 500
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val, opts) {
+                return opts.w.config.series[opts.seriesIndex];
+            },
+            style: {
+                fontSize: '14px',
+                fontWeight: 'bold',
+                colors: ['#fff']
+            }
+        },
+        plotOptions: {
+            pie: {
+                donut: {
+                    size: '65%',
+                    labels: {
+                        show: true,
+                        total: {
+                            show: true,
+                            label: 'Total',
+                            fontSize: '13px',
+                            fontWeight: 600,
+                            color: '#7b8a8b',
+                            formatter: function (w) {
+                                return totalContenus + totalMedias;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    // 3. Radar Chart pour Régions
+    const regionsOptions = {
+        series: [{
+            name: 'Couverture',
+            data: [totalRegions, totalRegions * 0.8, totalRegions * 0.6, totalRegions * 0.9, totalRegions * 0.7]
+        }],
+        chart: {
+            type: 'radar',
+            height: 250,
+            toolbar: { show: false }
+        },
+        xaxis: {
+            categories: ['Nord', 'Sud', 'Est', 'Ouest', 'Centre']
+        },
+        yaxis: {
+            show: false
+        },
+        fill: {
+            opacity: 0.4
+        },
+        stroke: {
+            show: true,
+            width: 2,
+            colors: ['#f1c40f']
+        },
+        markers: {
+            size: 4,
+            colors: ['#f1c40f'],
+            strokeColors: ['#fff'],
+            strokeWidth: 2
+        },
+        colors: ['#f1c40f'],
+        title: {
+            text: 'Régions Couvertes',
+            align: 'center',
+            style: {
+                fontSize: '16px',
+                fontWeight: '600',
+                color: '#2c3e50'
+            }
+        }
+    };
+
+    // 4. Line Chart pour Médias
+    const mediasOptions = {
+        series: [{
+            name: 'Médias',
+            data: [15, 22, 18, 28, 25, 32, 30, 38, 35, 40, 45, 50]
+        }],
+        chart: {
+            type: 'line',
+            height: 250,
+            toolbar: { show: false },
+            animations: {
+                enabled: true,
+                easing: 'easeinout',
+                speed: 800
+            }
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3
+        },
+        markers: {
+            size: 6,
+            colors: ['#fff'],
+            strokeColors: ['#e74c3c'],
+            strokeWidth: 2
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+                return val > 0 ? Math.round(val) : '';
+            },
+            offsetY: -10,
+            style: {
+                fontSize: '11px',
+                fontWeight: 'bold',
+                colors: ["#5a5c69"]
+            }
+        },
+        xaxis: {
+            categories: mois,
+            labels: {
+                style: {
+                    colors: '#95a5a6',
+                    fontSize: '12px',
+                    fontWeight: 500
+                }
+            }
+        },
+        yaxis: {
+            labels: {
+                formatter: function (val) {
+                    return Math.round(val);
+                },
+                style: {
+                    colors: '#95a5a6',
+                    fontSize: '11px'
+                }
+            }
+        },
+        colors: ['#e74c3c'],
+        grid: {
+            borderColor: '#e7e7e7',
+            strokeDashArray: 4
+        },
+        title: {
+            text: `Médias (${totalMedias} total)`,
+            align: 'left',
+            style: {
+                fontSize: '16px',
+                fontWeight: '600',
+                color: '#2c3e50'
+            }
+        }
+    };
+
+    // Initialisation des charts
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            if(document.querySelector("#usersChart")) {
+                const usersChart = new ApexCharts(document.querySelector("#usersChart"), usersOptions);
+                usersChart.render();
+            }
+            if(document.querySelector("#contenusChart")) {
+                const contenusChart = new ApexCharts(document.querySelector("#contenusChart"), contenusOptions);
+                contenusChart.render();
+            }
+            if(document.querySelector("#regionsChart")) {
+                const regionsChart = new ApexCharts(document.querySelector("#regionsChart"), regionsOptions);
+                regionsChart.render();
+            }
+            if(document.querySelector("#mediasChart")) {
+                const mediasChart = new ApexCharts(document.querySelector("#mediasChart"), mediasOptions);
+                mediasChart.render();
+            }
+        }, 100);
+    });
+</script>
+@endpush
+
+@push('styles')
+<style>
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.timeline {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.list-group-item {
+    transition: background-color 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    color: #6c757d;
+    font-weight: bold;
+}
+</style>
+@endpush
             </div>
         </div>
     </div>

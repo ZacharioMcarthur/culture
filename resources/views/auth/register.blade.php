@@ -1,23 +1,148 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription - Culture Bénin</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+@extends('layouts.app')
+
+@section('title', 'Register')
+
+@section('content')
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <!-- Header -->
+        <div class="text-center">
+            <img src="{{ asset('images/logo.png') }}" alt="Culture Bénin" class="mx-auto h-16 w-auto mb-6">
+            <h2 class="text-3xl font-bold text-gray-900">Inscription</h2>
+            <p class="mt-2 text-sm text-gray-600">
+                Rejoignez notre plateforme culturelle
+            </p>
+        </div>
+
+        <!-- Register Form -->
+        <form class="mt-8 space-y-6" action="{{ route('register') }}" method="POST">
+            @csrf
+            <div class="space-y-4">
+                <!-- Name -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">
+                        Nom complet
+                    </label>
+                    <div class="mt-1 relative">
+                        <input id="name" name="name" type="text" autocomplete="name" required
+                               class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                               placeholder="Jean Dupont">
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                    </div>
+                    @error('name')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">
+                        Adresse Email
+                    </label>
+                    <div class="mt-1 relative">
+                        <input id="email" name="email" type="email" autocomplete="email" required
+                               class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                               placeholder="exemple@email.com">
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                        </div>
+                    </div>
+                    @error('email')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">
+                        Mot de passe
+                    </label>
+                    <div class="mt-1 relative">
+                        <input id="password" name="password" type="password" autocomplete="new-password" required
+                               class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                               placeholder="••••••••••">
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                            <button type="button" class="text-gray-400 hover:text-gray-600" onclick="togglePassword()">
+                                <i class="fas fa-eye" id="passwordToggle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    @error('password')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Password Confirmation -->
+                <div>
+                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700">
+                        Confirmer le mot de passe
+                    </label>
+                    <div class="mt-1 relative">
+                        <input id="password_confirmation" name="password_confirmation" type="password" autocomplete="new-password" required
+                               class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                               placeholder="••••••••••">
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                    </div>
+                    @error('password_confirmation')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Terms -->
+                <div class="flex items-center">
+                    <input id="terms" name="terms" type="checkbox" required
+                           class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                    <label for="terms" class="ml-2 block text-sm text-gray-900">
+                        J'accepte les <a href="#" class="text-blue-600 hover:text-blue-500">conditions d'utilisation</a> et la <a href="#" class="text-blue-600 hover:text-blue-500">politique de confidentialité</a>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" 
+                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200">
+                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                        <i class="fas fa-user-plus"></i>
+                    </span>
+                    <span class="ml-8">S'inscrire</span>
+                </button>
+            </div>
+        </form>
+
+        <!-- Login Link -->
+        <div class="text-center">
+            <p class="text-sm text-gray-600">
+                Déjà un compte?
+                <a href="{{ route('login') }}" class="font-medium text-blue-600 hover:text-blue-500">
+                    Se connecter
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const passwordToggle = document.getElementById('passwordToggle');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordToggle.classList.remove('fa-eye');
+        passwordToggle.classList.add('fa-eye-slash');
+    } else {
+        passwordInput.type = 'password';
+        passwordToggle.classList.remove('fa-eye-slash');
+        passwordToggle.classList.add('fa-eye');
+    }
+}
+</script>
+@endsection
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             transition: all 0.3s ease;
