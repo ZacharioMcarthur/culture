@@ -163,7 +163,7 @@
                                     <span class="text-sm text-gray-500">
                                         <i class="fas fa-eye mr-1"></i>{{ $contenu->vues ?? 0 }} vues
                                     </span>
-                                    <a href="{{ route('contenus.details', $contenu->id) }}" class="text-purple-600 hover:text-purple-800 font-semibold">
+                                    <a href="{{ route('contenus.details', $contenu->slug ?? $contenu->id) }}" class="text-purple-600 hover:text-purple-800 font-semibold">
                                         Lire la suite <i class="fas fa-arrow-right ml-1"></i>
                                     </a>
                                 </div>

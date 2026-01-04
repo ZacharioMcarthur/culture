@@ -22,6 +22,13 @@ class ContenuController extends Controller
             ->take(6)
             ->get();
             
+        // Générer les slugs si ils n'existent pas
+        foreach ($contenusRecents as $contenu) {
+            if (!$contenu->slug) {
+                $contenu->slug = \Str::slug($contenu->titre . '-' . $contenu->id_contenu);
+            }
+        }
+            
         return view('front.accueil', compact('contenusRecents'));
     }
 
@@ -30,9 +37,16 @@ class ContenuController extends Controller
      */
     public function details($slug)
     {
+        // Essayer de trouver par slug, sinon par ID
         $contenu = Contenu::with(['categorie', 'medias', 'commentaires.utilisateur'])
             ->where('slug', $slug)
-            ->firstOrFail();
+            ->first();
+            
+        if (!$contenu) {
+            // Si pas trouvé par slug, essayer par ID
+            $contenu = Contenu::with(['categorie', 'medias', 'commentaires.utilisateur'])
+                ->findOrFail($slug);
+        }
 
         // Vérifier si le contenu est payant et si l'utilisateur a payé
         $hasPaid = false;
