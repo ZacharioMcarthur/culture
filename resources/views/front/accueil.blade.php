@@ -417,7 +417,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 text-center">
-                <p class="text-gray-400">&copy; 2026 Culture Bénin - Patrimoine & Événements. Tous droits réservés.</p>
+                <p class="text-gray-400">&copy; {{ date('Y') }} Culture Bénin - Plateforme Académique. Tous droits réservés.</p>
                 <p class="text-gray-500 text-sm mt-2">Célébrons ensemble la richesse culturelle du Bénin.</p>
             </div>
         </div>
