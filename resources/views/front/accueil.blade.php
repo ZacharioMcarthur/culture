@@ -3,371 +3,422 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Culture Bénin - Découvrez notre richesse culturelle</title>
+    <title>Culture Bénin - Patrimoine et Événements</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        .hero-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        .feature-icon {
-            transition: all 0.3s ease;
-        }
-        .feature-icon:hover {
-            transform: scale(1.1);
-        }
-        .text-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap');
+
+        body { font-family: 'Poppins', sans-serif; }
+        h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
+
+        .hero-gradient { background: linear-gradient(135deg, #0A2E5C 0%, #1A5F9E 100%); }
+        .accent-gradient { background: linear-gradient(135deg, #FF7A00 0%, #FF9E40 100%); }
+        .text-accent-gradient {
+            background: linear-gradient(135deg, #FF7A00 0%, #FF9E40 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .event-badge { position: absolute; top: 15px; right: 15px; z-index: 10; }
+        .logo-typo { font-weight: 700; letter-spacing: 1px; color: #0A2E5C; }
+        .section-title { position: relative; display: inline-block; margin-bottom: 2rem; }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, #FF7A00, #FF9E40);
+            border-radius: 2px;
+        }
+        .feature-icon-wrapper {
+            width: 70px; height: 70px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .feature-icon-wrapper:hover { transform: scale(1.1); }
+        .floating-animation { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+        .pulse-animation { animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,122,0,0.5); } 70% { box-shadow: 0 0 0 15px rgba(255,122,0,0); } 100% { box-shadow: 0 0 0 0 rgba(255,122,0,0); } }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
-                    <img src="{{ asset('images/logo.svg') }}" alt="Culture Bénin" class="w-12 h-12 mr-3">
-                    <span class="text-2xl font-bold text-gradient">Culture Bénin</span>
+                    <!-- Logo -->
+                    <div class="relative mr-3">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">CB</span>
+                        </div>
+                        <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full"></div>
+                    </div>
+                    <div>
+                        <div class="logo-typo text-xl">CULTURE</div>
+                        <div class="text-sm text-gray-600 -mt-1">Patrimoine & Événements</div>
+                    </div>
                 </div>
-                <div class="hidden md:flex space-x-6">
-                    <a href="#" class="text-gray-700 hover:text-purple-600 transition">Accueil</a>
-                    <a href="{{ route('contenus.tous') }}" class="text-gray-700 hover:text-purple-600 transition">Contenus</a>
-                    <a href="#" class="text-gray-700 hover:text-purple-600 transition">À propos</a>
-                    <a href="#" class="text-gray-700 hover:text-purple-600 transition">Contact</a>
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#" class="text-gray-800 hover:text-blue-700 font-medium transition relative group">
+                        Accueil<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#evenements" class="text-gray-800 hover:text-blue-700 font-medium transition relative group">
+                        Événements<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#artistes" class="text-gray-800 hover:text-blue-700 font-medium transition relative group">
+                        Artistes<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#artisanat" class="text-gray-800 hover:text-blue-700 font-medium transition relative group">
+                        Artisanat<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="text-gray-800 hover:text-blue-700 font-medium transition relative group">
+                        Contact<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
                 </div>
                 <div class="flex items-center space-x-4">
-                    @if(!Auth::check())
-                        <a href="{{ route('login') }}" class="text-purple-600 hover:text-purple-800">
-                            <i class="fas fa-sign-in-alt mr-2"></i>Connexion
-                        </a>
-                        <a href="{{ route('register') }}" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
-                            <i class="fas fa-user-plus mr-2"></i>Inscription
-                        </a>
-                    @else
-                        <a href="{{ route('dashboard') }}" class="text-purple-600 hover:text-purple-800">
-                            <i class="fas fa-user mr-2"></i>Mon compte
-                        </a>
-                        <form method="POST" action="{{ route('logout') }}" class="inline">
-                            @csrf
-                            <button type="submit" class="text-red-600 hover:text-red-800">
-                                <i class="fas fa-sign-out-alt"></i>
-                            </button>
-                        </form>
-                    @endif
+                    <a href="#" class="text-blue-700 hover:text-blue-900 font-medium">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Connexion
+                    </a>
+                    <a href="#" class="bg-gradient-to-r from-blue-700 to-blue-900 text-white px-5 py-2.5 rounded-lg font-medium hover:from-blue-800 hover:to-blue-950 transition shadow-md">
+                        <i class="fas fa-user-plus mr-2"></i>Inscription
+                    </a>
+                    <button class="lg:hidden text-gray-800">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-gradient text-white py-20">
+    <section class="hero-gradient text-white pt-16 pb-24 overflow-hidden">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h1 class="text-5xl font-bold mb-6">Plongez au cœur de la Culture Béninoise</h1>
-                    <p class="text-xl mb-8 text-white/90">
-                        Explorez notre riche patrimoine à travers des articles authentiques, des médias exclusifs et des contenus premium qui célèbrent la diversité culturelle du Bénin.
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="relative z-10">
+                    <div class="inline-block mb-4 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full">
+                        <span class="text-sm font-medium">#CultureBénin</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                        Explorez et célébrez le <span class="text-accent-gradient">patrimoine culturel</span> du Bénin
+                    </h1>
+                    <p class="text-xl mb-8 text-white/90 leading-relaxed">
+                        Une plateforme qui met en avant les événements, artistes, artisanat et traditions béninoises pour tous les passionnés de culture.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="{{ route('contenus.tous') }}" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
-                            <i class="fas fa-compass mr-2"></i>Explorer les contenus
+                        <a href="#evenements" class="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-8 py-3.5 rounded-lg font-semibold hover:from-orange-600 hover:to-yellow-600 transition shadow-lg flex items-center">
+                            <i class="fas fa-calendar-alt mr-3"></i>Voir les événements
                         </a>
-                        <a href="#features" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition">
-                            <i class="fas fa-play-circle mr-2"></i>Découvrir plus
+                        <a href="#fonctionnement" class="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-white/30 transition flex items-center">
+                            <i class="fas fa-play-circle mr-3"></i>Comment ça marche ?
                         </a>
                     </div>
+                    <div class="mt-12 grid grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold mb-1">120+</div>
+                            <div class="text-sm text-white/80">Artistes</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold mb-1">80+</div>
+                            <div class="text-sm text-white/80">Événements</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold mb-1">12</div>
+                            <div class="text-sm text-white/80">Régions</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="text-center">
+                <div class="relative">
+                    <div class="absolute -top-10 -right-10 w-64 h-64 bg-gradient-to-br from-orange-500/20 to-yellow-500/20 rounded-full blur-3xl"></div>
+                    <div class="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-2xl">
+                        <div class="flex justify-center mb-6">
+                            <div class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center floating-animation">
+                                <div class="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center">
+                                    <i class="fas fa-landmark text-white text-3xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-6 mb-6">
+                            <h3 class="text-xl font-bold mb-3">Événement à venir</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-calendar-day text-white"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium">Festival des Masques</div>
+                                    <div class="text-sm text-white/80">Ouidah, Bénin</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-sm">
+                                <i class="fas fa-clock mr-2"></i>
+                                <span>20 Janvier 2026 | 10h00 - 22h00</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="pulse-animation">
+                                <a href="#" class="flex items-center text-white bg-gradient-to-r from-blue-800/50 to-blue-900/50 px-6 py-3 rounded-full border border-white/30">
+                                    <i class="fas fa-bell mr-2"></i>
+                                    <span>S'inscrire à l'événement</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Événements -->
+    <section id="evenements" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-3xl font-bold text-gray-800 inline-block">Événements Récents</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-4">
+                    Découvrez les festivals, expositions et manifestations culturelles à travers le Bénin
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Événement exemple -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
                     <div class="relative">
-                        <div class="absolute inset-0 bg-white/20 rounded-full blur-3xl"></div>
-                        <img src="{{ asset('images/logo.svg') }}" alt="Culture Bénin" class="relative w-64 h-64 mx-auto animate-pulse">
+                        <div class="h-48 bg-gradient-to-br from-orange-100 to-yellow-50 flex items-center justify-center">
+                            <i class="fas fa-mask text-orange-500 text-6xl"></i>
+                        </div>
+                        <div class="event-badge">
+                            <span class="px-3 py-1 bg-gradient-to-r from-orange-500 to-yellow-500 text-white text-xs font-bold rounded-full">
+                                FESTIVAL
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-landmark text-orange-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">Ouidah</div>
+                                <div class="text-xs text-gray-500">Publié il y a 3 jours</div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Festival des Masques</h3>
+                        <p class="text-gray-600 mb-4">
+                            Une célébration des traditions béninoises avec danses, chants et expositions artisanales.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 20-22 Janvier 2026
+                            </div>
+                            <a href="#" class="text-blue-700 font-medium hover:text-blue-900 transition">
+                                Détails <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Événement 2 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-br from-green-100 to-emerald-50 flex items-center justify-center">
+                            <i class="fas fa-palette text-green-600 text-6xl"></i>
+                        </div>
+                        <div class="event-badge">
+                            <span class="px-3 py-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-bold rounded-full">
+                                EXPOSITION
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-paint-brush text-green-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">Cotonou</div>
+                                <div class="text-xs text-gray-500">Publié il y a 1 semaine</div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Exposition Artisanale</h3>
+                        <p class="text-gray-600 mb-4">
+                            Exposition des artisans locaux : sculpture, tissage, bijoux et céramiques traditionnelles.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 5-10 Février 2026
+                            </div>
+                            <a href="#" class="text-blue-700 font-medium hover:text-blue-900 transition">
+                                Détails <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Événement 3 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-br from-purple-100 to-violet-50 flex items-center justify-center">
+                            <i class="fas fa-music text-purple-600 text-6xl"></i>
+                        </div>
+                        <div class="event-badge">
+                            <span class="px-3 py-1 bg-gradient-to-r from-purple-500 to-violet-600 text-white text-xs font-bold rounded-full">
+                                CONCERT
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-music text-purple-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">Porto-Novo</div>
+                                <div class="text-xs text-gray-500">Publié il y a 5 jours</div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Concert Traditionnel</h3>
+                        <p class="text-gray-600 mb-4">
+                            Un spectacle musical mettant en avant les instruments et rythmes béninois traditionnels.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 15 Février 2026
+                            </div>
+                            <a href="#" class="text-blue-700 font-medium hover:text-blue-900 transition">
+                                Détails <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Statistics Cards -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; border-left: 4px solid #3498db;">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center" 
-                                         style="width: 50px; height: 50px; background: linear-gradient(135deg, #e3f2fd, #bbdefb);">
-                                        <i class="fas fa-users" style="font-size: 1.5rem; color: #1976d2;"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 ms-4">
-                                    <h5 class="mb-1" style="color: #7b8a8b; font-size: 0.9rem; font-weight: 500;">UTILISATEURS</h5>
-                                    <h2 class="mb-0" style="color: #2c3e50; font-weight: 700;">{{ \App\Models\User::count() }}</h2>
-                                </div>
-                            </div>
-                            <div class="mt-3 text-decoration-none" 
-                               style="color: #3498db; font-weight: 500; font-size: 0.9rem;">
-                                Membres actifs
-                            </div>
-                        </div>
+    <!-- Section Fonctionnalités -->
+    <section id="fonctionnement" class="py-16 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-3xl font-bold text-gray-800 inline-block">Pourquoi explorer Culture Bénin ?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-4">
+                    Une plateforme pour découvrir, célébrer et partager la richesse culturelle du Bénin
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6">
+                    <div class="feature-icon-wrapper bg-gradient-to-br from-blue-100 to-blue-50">
+                        <i class="fas fa-landmark text-blue-600 text-2xl"></i>
                     </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Découverte du patrimoine</h4>
+                    <p class="text-gray-600">Explorez monuments, sites historiques et traditions du Bénin.</p>
                 </div>
-
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; border-left: 4px solid #2ecc71;">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center" 
-                                         style="width: 50px; height: 50px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
-                                        <i class="fas fa-language" style="font-size: 1.5rem; color: #388e3c;"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 ms-4">
-                                    <h5 class="mb-1" style="color: #7b8a8b; font-size: 0.9rem; font-weight: 500;">LANGUES</h5>
-                                    <h2 class="mb-0" style="color: #2c3e50; font-weight: 700;">{{ \App\Models\Langue::count() }}</h2>
-                                </div>
-                            </div>
-                            <div class="mt-3 text-decoration-none" 
-                               style="color: #2ecc71; font-weight: 500; font-size: 0.9rem;">
-                                Langues béninoises
-                            </div>
-                        </div>
+                <div class="text-center p-6">
+                    <div class="feature-icon-wrapper bg-gradient-to-br from-orange-100 to-yellow-50">
+                        <i class="fas fa-users text-orange-600 text-2xl"></i>
                     </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Événements culturels</h4>
+                    <p class="text-gray-600">Soyez informé des festivals, concerts et expositions à travers le pays.</p>
                 </div>
-
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; border-left: 4px solid #f1c40f;">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center"
-                                         style="width: 50px; height: 50px; background: linear-gradient(135deg, #fef9e7, #f9e79f);">
-                                        <i class="fas fa-map-marked-alt" style="font-size: 1.5rem; color: #d4ac0d;"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 ms-4">
-                                    <h5 class="mb-1" style="color: #7b8a8b; font-size: 0.9rem; font-weight: 500;">RÉGIONS</h5>
-                                    <h2 class="mb-0" style="color: #2c3e50; font-weight: 700;">12</h2>
-                                </div>
-                            </div>
-                            <div class="mt-3 text-decoration-none"
-                               style="color: #f1c40f; font-weight: 500; font-size: 0.9rem;">
-                                Couverture nationale
-                            </div>
-                        </div>
+                <div class="text-center p-6">
+                    <div class="feature-icon-wrapper bg-gradient-to-br from-green-100 to-emerald-50">
+                        <i class="fas fa-paint-brush text-green-600 text-2xl"></i>
                     </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Art et artisanat</h4>
+                    <p class="text-gray-600">Découvrez les artistes locaux et leur savoir-faire unique.</p>
                 </div>
-
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; border-left: 4px solid #e74c3c;">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center" 
-                                         style="width: 50px; height: 50px; background: linear-gradient(135deg, #f9ebea, #f5b7b1);">
-                                        <i class="fas fa-book-open" style="font-size: 1.5rem; color: #c0392b;"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 ms-4">
-                                    <h5 class="mb-1" style="color: #7b8a8b; font-size: 0.9rem; font-weight: 500;">CONTENUS</h5>
-                                    <h2 class="mb-0" style="color: #2c3e50; font-weight: 700;">{{ \App\Models\Contenu::count() }}</h2>
-                                </div>
-                            </div>
-                            <div class="mt-3 text-decoration-none" 
-                               style="color: #e74c3c; font-weight: 500; font-size: 0.9rem;">
-                                Articles publiés
-                            </div>
-                        </div>
+                <div class="text-center p-6">
+                    <div class="feature-icon-wrapper bg-gradient-to-br from-purple-100 to-violet-50">
+                        <i class="fas fa-mobile-alt text-purple-600 text-2xl"></i>
                     </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Accessible partout</h4>
+                    <p class="text-gray-600">Consultez la culture béninoise depuis votre smartphone, tablette ou ordinateur.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Contenus Récents -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="text-center mb-5">Contenus Récents</h2>
-                </div>
-            </div>
-            
-            @if(isset($contenusRecents) && $contenusRecents->count() > 0)
-                <div class="row">
-                    @foreach($contenusRecents as $contenu)
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100">
-                                @if($contenu->medias->first())
-                                    <img src="{{ asset('storage/' . $contenu->medias->first()->chemin) }}" 
-                                         class="card-img-top" alt="{{ $contenu->titre }}" style="height: 200px; object-fit: cover;">
-                                @else
-                                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
-                                         style="height: 200px;">
-                                        <i class="fas fa-image fa-3x text-muted"></i>
-                                    </div>
-                                @endif
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">{{ Str::limit($contenu->titre, 50) }}</h5>
-                                    <p class="card-text">{{ Str::limit(strip_tags($contenu->contenu), 100) }}</p>
-                                    <div class="mt-auto">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="badge bg-primary">{{ $contenu->categorie->nom ?? 'Article' }}</span>
-                                            @if($contenu->statut === 'payant')
-                                                <span class="badge bg-warning">
-                                                    <i class="fas fa-crown"></i> Premium
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <a href="{{ route('contenus.details', $contenu->slug ?? $contenu->id) }}" class="btn btn-outline-primary">
-                                            Lire la suite
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                
-                <div class="text-center mt-4">
-                    <a href="{{ route('contenus.tous') }}" class="btn btn-primary">
-                        Voir tous les contenus <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            @else
-                <div class="text-center py-5">
-                    <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
-                    <h4>Aucun contenu disponible</h4>
-                    <p class="text-muted">Revenez bientôt pour découvrir de nouveaux contenus.</p>
-                </div>
-            @endif
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="text-center mb-5">Pourquoi nous choisir ?</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 text-center mb-4">
-                    <div class="feature-box">
-                        <i class="fas fa-book fa-3x text-primary mb-3"></i>
-                        <h5>Contenus de Qualité</h5>
-                        <p class="text-muted">Articles rédigés par des experts de la culture béninoise.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center mb-4">
-                    <div class="feature-box">
-                        <i class="fas fa-photo-video fa-3x text-primary mb-3"></i>
-                        <h5>Médias Riches</h5>
-                        <p class="text-muted">Photos, vidéos et documents pour une expérience immersive.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center mb-4">
-                    <div class="feature-box">
-                        <i class="fas fa-crown fa-3x text-primary mb-3"></i>
-                        <h5>Contenus Exclusifs</h5>
-                        <p class="text-muted">Accédez à des contenus premium à partir de 100 FCFA.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-5 bg-primary text-white">
-        <div class="container text-center">
-            <h2 class="mb-4">Rejoignez notre communauté</h2>
-            <p class="lead mb-4">
-                Inscrivez-vous pour accéder à tous nos contenus et recevoir les dernières actualités culturelles.
-            </p>
-            @if(!Auth::check())
-                <div class="d-flex gap-2 justify-content-center">
-                    <a href="{{ route('register') }}" class="btn btn-light btn-lg">
-                        <i class="fas fa-user-plus"></i> S'inscrire
-                    </a>
-                    <a href="{{ route('login') }}" class="btn btn-outline-light btn-lg">
-                        <i class="fas fa-sign-in-alt"></i> Se connecter
-                    </a>
-                </div>
-            @else
-                <a href="{{ route('contenus.tous') }}" class="btn btn-light btn-lg">
-                    <i class="fas fa-compass"></i> Explorer les contenus
-                </a>
-            @endif
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer id="contact" class="bg-gray-900 text-white pt-12 pb-8">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <div class="flex items-center mb-4">
-                        <img src="{{ asset('images/logo.svg') }}" alt="Culture Bénin" class="w-10 h-10 mr-3">
-                        <span class="text-xl font-bold">Culture Bénin</span>
+                    <div class="flex items-center mb-6">
+                        <div class="relative mr-3">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
+                                <span class="text-white font-bold">CB</span>
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full"></div>
+                        </div>
+                        <div>
+                            <div class="font-bold text-xl">CULTURE</div>
+                            <div class="text-sm text-gray-400">Patrimoine & Événements</div>
+                        </div>
                     </div>
-                    <p class="text-gray-400">Célébrons ensemble la richesse et la diversité de la culture béninoise.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Navigation</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Accueil</a></li>
-                        <li><a href="{{ route('contenus.tous') }}" class="hover:text-white transition">Contenus</a></li>
-                        <li><a href="#" class="hover:text-white transition">À propos</a></li>
-                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Catégories</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Histoires & Contes</a></li>
-                        <li><a href="#" class="hover:text-white transition">Recettes</a></li>
-                        <li><a href="#" class="hover:text-white transition">Musiques</a></li>
-                        <li><a href="#" class="hover:text-white transition">Traditions</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Suivez-nous</h4>
+                    <p class="text-gray-400 mb-6">
+                        Célébrons et partageons la richesse culturelle du Bénin, de ses traditions à son artisanat.
+                    </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-700 transition">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-500 transition">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-red-600 transition">
                             <i class="fab fa-youtube"></i>
                         </a>
                     </div>
                 </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Navigation</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Accueil</a></li>
+                        <li><a href="#evenements" class="text-gray-400 hover:text-white transition">Événements</a></li>
+                        <li><a href="#artistes" class="text-gray-400 hover:text-white transition">Artistes</a></li>
+                        <li><a href="#artisanat" class="text-gray-400 hover:text-white transition">Artisanat</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Culture & Patrimoine</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Festivals</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Expositions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Artisanat</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Musique & Danse</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Patrimoine Historique</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Contact</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-500 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Cotonou, Bénin</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-500 mr-3"></i>
+                            <span class="text-gray-400">contact@culturebenin.bj</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-500 mr-3"></i>
+                            <span class="text-gray-400">+229 01 23 45 67 89</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Culture Bénin. Tous droits réservés.</p>
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2026 Culture Bénin - Patrimoine & Événements. Tous droits réservés.</p>
+                <p class="text-gray-500 text-sm mt-2">Célébrons ensemble la richesse culturelle du Bénin.</p>
             </div>
         </div>
     </footer>
