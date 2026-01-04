@@ -44,7 +44,8 @@ class Paiement extends Model
 
     public function utilisateur()
     {
-        return $this->belongsTo(Utilisateur::class, 'id_utilisateur', 'id');
+        // Support à la fois User et Utilisateur (même table)
+        return $this->belongsTo(User::class, 'id_utilisateur', 'id');
     }
 
     public function contenu()

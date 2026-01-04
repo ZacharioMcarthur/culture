@@ -5,50 +5,83 @@ namespace App\Http\Controllers;
 use App\Models\Contenu;
 use App\Models\Commentaire;
 use App\Models\Note;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ContenuController extends Controller
 {
     /**
-     * Display the specified resource.
+     * Page d'accueil avec les contenus récents
      */
-    public function show($slug)
+    public function accueil()
     {
-        $contenu = Contenu::with(['categorie', 'auteur', 'medias', 'commentaires.utilisateur', 'notes'])
-            ->where('slug', $slug)
+        $contenusRecents = Contenu::with(['categorie', 'medias'])
             ->where('statut', 'publié')
+            ->orderBy('created_at', 'desc')
+            ->take(6)
+            ->get();
+            
+        return view('front.accueil', compact('contenusRecents'));
+    }
+
+    /**
+     * Page de détails d'un contenu avec vérification de paiement
+     */
+    public function details($slug)
+    {
+        $contenu = Contenu::with(['categorie', 'medias', 'commentaires.utilisateur'])
+            ->where('slug', $slug)
             ->firstOrFail();
 
-        // Vérifier si l'utilisateur a accès au contenu payant
-        if ($contenu->statut === 'payant') {
-            if (!Auth::check()) {
-                return redirect()->route('login')
-                    ->with('error', 'Vous devez être connecté pour accéder à ce contenu.');
-            }
-
-            // Vérifier si l'utilisateur a payé pour ce contenu
-            $aPaye = Auth::user()->paiements()
-                ->where('id_contenu', $contenu->id_contenu)
-                ->where('statut', 'réussi')
+        // Vérifier si le contenu est payant et si l'utilisateur a payé
+        $hasPaid = false;
+        $canAccess = true;
+        
+        if ($contenu->statut === 'payant' && Auth::check()) {
+            $hasPaid = Payment::where('user_id', Auth::id())
+                ->where('contenu_id', $contenu->id_contenu)
+                ->where('status', 'approved')
                 ->exists();
-
-            if (!$aPaye) {
-                return redirect()->route('home')
-                    ->with('error', 'Vous devez payer pour accéder à ce contenu premium.');
-            }
+            $canAccess = $hasPaid;
+        } elseif ($contenu->statut === 'payant') {
+            $canAccess = false;
         }
 
         // Incrémenter le nombre de vues
-        $contenu->incrementerVues();
+        $contenu->increment('vues');
 
-        // Calculer la moyenne des notes
-        $moyenneNotes = $contenu->moyenneNotes();
-        $nombreNotes = $contenu->nombreNotes();
+        return view('front.details', compact('contenu', 'hasPaid', 'canAccess'));
+    }
 
-        // Récupérer les commentaires (un par utilisateur)
-        $commentaires = $contenu->commentaires()->with('utilisateur')->get();
+    /**
+     * Afficher tous les contenus
+     */
+    public function tous()
+    {
+        $contenus = Contenu::with(['categorie', 'medias'])
+            ->where('statut', 'publié')
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+            
+        return view('front.tous', compact('contenus'));
+    }
 
-        return view('contenu.show', compact('contenu', 'moyenneNotes', 'nombreNotes', 'commentaires'));
+    /**
+     * Store un commentaire sur un contenu
+     */
+    public function storeCommentaire(Request $request, $contenuId)
+    {
+        $request->validate([
+            'message' => 'required|string|max:1000',
+        ]);
+
+        Commentaire::create([
+            'id_contenu' => $contenuId,
+            'id_utilisateur' => Auth::id(),
+            'message' => $request->message,
+        ]);
+
+        return redirect()->back()->with('success', 'Commentaire ajouté avec succès!');
     }
 }

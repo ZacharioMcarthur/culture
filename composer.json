@@ -7,13 +7,13 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-gd": "*",
+        "ext-pdo_mysql": "*",
+        "fedapay/fedapay-php": "^0.4.7",
         "laravel/fortify": "^1.32",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "yajra/laravel-datatables-oracle": "^12.6",
-        "ext-gd": "*",
-        "ext-pdo_mysql": "*"
-        
+        "yajra/laravel-datatables-oracle": "^12.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

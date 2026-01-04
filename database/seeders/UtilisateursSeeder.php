@@ -62,7 +62,7 @@ class UtilisateursSeeder extends Seeder
                 'sexe' => $user['sexe'],
                 'date_naissance' => $user['date_naissance'],
                 'date_inscription' => now(),
-                'statut' => 'valide',
+                'statut' => 1, // entier au lieu de 'valide'
                 'id_role' => $user['id_role'],
                 'id_langue' => $user['id_langue'],
                 'photo' => 'photos/default.png',

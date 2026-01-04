@@ -10,17 +10,13 @@ class CommentairesSeeder extends Seeder
     public function run(): void
     {
         Commentaire::create([
-            'texte' => 'Très intéressant !',
-            'note' => 5,
-            'date' => now(),
+            'message' => 'Très intéressant ! J\'adore les contes traditionnels béninois.',
             'id_utilisateur' => 4, // Jean
             'id_contenu' => 1,
         ]);
 
         Commentaire::create([
-            'texte' => 'Recette facile à suivre',
-            'note' => 4,
-            'date' => now(),
+            'message' => 'Recette facile à suivre. Je vais essayer de faire du Wagasi ce week-end !',
             'id_utilisateur' => 4,
             'id_contenu' => 2,
         ]);

@@ -188,7 +188,11 @@
                                 <i class="fas fa-user me-1"></i>{{ Auth::user()->name ?? Auth::user()->nom ?? 'Utilisateur' }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Mon profil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fas fa-user me-2"></i>Mon profil</a></li>
+                                @if(Auth::user()->role && Auth::user()->role->nom_role === 'Administrateur')
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.index') }}"><i class="fas fa-cog me-2"></i>Administration</a></li>
+                                @endif
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}" class="d-inline">
@@ -313,7 +317,11 @@
             @endguest
 
             <div class="row g-4">
-                @forelse(\App\Models\Contenu::with('categorie', 'auteur')->where('statut', 'publié')->take(6)->get() as $contenu)
+                @forelse(\App\Models\Contenu::with('categorie', 'auteur')
+                    ->whereIn('statut', ['publié', 'payant'])
+                    ->orderBy('created_at', 'desc')
+                    ->take(6)
+                    ->get() as $contenu)
                     <div class="col-lg-4 col-md-6">
                         <div class="card content-card h-100">
                             @if($contenu->medias->count() > 0)
@@ -371,12 +379,24 @@
                                 <div class="mt-3">
                                     @if($contenu->statut === 'payant')
                                         @auth
-                                            <form action="{{ route('paiement.initier', $contenu->id_contenu) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                <button type="submit" class="btn btn-warning w-100">
-                                                    <i class="fas fa-credit-card me-1"></i>Découvrir ({{ number_format($contenu->prix, 2) }}€)
-                                                </button>
-                                            </form>
+                                            @php
+                                                $aPaye = Auth::user()->paiements()
+                                                    ->where('id_contenu', $contenu->id_contenu)
+                                                    ->where('statut', 'réussi')
+                                                    ->exists();
+                                            @endphp
+                                            @if($aPaye)
+                                                <a href="{{ route('contenu.show', $contenu->slug) }}" class="btn btn-success w-100">
+                                                    <i class="fas fa-check-circle me-1"></i>Lire l'article (Payé)
+                                                </a>
+                                            @else
+                                                <form action="{{ route('paiement.initier', $contenu->id_contenu) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-warning w-100">
+                                                        <i class="fas fa-credit-card me-1"></i>Découvrir ({{ number_format($contenu->prix, 2) }}€)
+                                                    </button>
+                                                </form>
+                                            @endif
                                         @else
                                             <a href="{{ route('login') }}" class="btn btn-outline-primary w-100">
                                                 <i class="fas fa-lock me-1"></i>Découvrir (Connexion requise)
@@ -453,7 +473,7 @@
             </div>
             <hr class="my-4">
             <div class="text-center">
-                <p class="mb-0">&copy; 2025 Culture Bénin. Tous droits réservés.</p>
+                <p class="mb-0">&copy; 2025 Culture Bénin. Tous droits réservés. | Mis à jour le 10/12/2025</p>
             </div>
         </div>
     </footer>

@@ -11,18 +11,18 @@ class MediasSeeder extends Seeder
     {
         Media::create([
             'chemin' => 'media/contenus/tortue_lièvre.mp3',
+            'type' => 'audio',
             'description' => 'Lecture audio du conte',
             'id_contenu' => 1,
-            'id_type_media' => 2, // Audio
-            'langue_id' => 2,
+            'id_utilisateur' => 3, // Amina
         ]);
 
         Media::create([
             'chemin' => 'media/contenus/wagasi.jpg',
+            'type' => 'image',
             'description' => 'Photo du fromage Wagasi',
             'id_contenu' => 2,
-            'id_type_media' => 1, // Image
-            'langue_id' => 5,
+            'id_utilisateur' => 3, // Amina
         ]);
     }
 }
