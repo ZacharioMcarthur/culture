@@ -54,12 +54,7 @@
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
                     <!-- Logo -->
-                    <div class="relative mr-3">
-                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
-                            <span class="text-white font-bold text-lg">CB</span>
-                        </div>
-                        <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full"></div>
-                    </div>
+                    <img src="{{ asset('images/logo.png') }}" alt="Culture Bénin" class="w-12 h-12 mr-3">
                     <div>
                         <div class="logo-typo text-xl">CULTURE</div>
                         <div class="text-sm text-gray-600 -mt-1">Patrimoine & Événements</div>
@@ -138,11 +133,7 @@
                     <div class="absolute -top-10 -right-10 w-64 h-64 bg-gradient-to-br from-orange-500/20 to-yellow-500/20 rounded-full blur-3xl"></div>
                     <div class="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-2xl">
                         <div class="flex justify-center mb-6">
-                            <div class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center floating-animation">
-                                <div class="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center">
-                                    <i class="fas fa-landmark text-white text-3xl"></i>
-                                </div>
-                            </div>
+                            <img src="{{ asset('images/logo.png') }}" alt="Culture Bénin" class="w-24 h-24 rounded-full floating-animation">
                         </div>
                         <div class="bg-white/10 rounded-xl p-6 mb-6">
                             <h3 class="text-xl font-bold mb-3">Événement à venir</h3>
@@ -346,12 +337,7 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                 <div>
                     <div class="flex items-center mb-6">
-                        <div class="relative mr-3">
-                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
-                                <span class="text-white font-bold">CB</span>
-                            </div>
-                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full"></div>
-                        </div>
+                        <img src="{{ asset('images/logo.png') }}" alt="Culture Bénin" class="w-10 h-10 mr-3">
                         <div>
                             <div class="font-bold text-xl">CULTURE</div>
                             <div class="text-sm text-gray-400">Patrimoine & Événements</div>
