@@ -109,7 +109,37 @@ class User extends Authenticatable
 
     public function paiements()
     {
-        return $this->hasMany(Paiement::class, 'id_utilisateur');
+        return $this->hasMany(Payment::class, 'user_id');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'user_id');
+    }
+
+    public function contenusAuteur()
+    {
+        return $this->hasMany(Contenu::class, 'id_auteur');
+    }
+
+    public function contenusModerateur()
+    {
+        return $this->hasMany(Contenu::class, 'id_moderateur');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role && $this->role->nom === 'admin';
+    }
+
+    public function isModerateur()
+    {
+        return $this->role && $this->role->nom === 'moderateur';
+    }
+
+    public function isAuteur()
+    {
+        return $this->role && $this->role->nom === 'auteur';
     }
 }
 

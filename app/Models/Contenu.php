@@ -23,11 +23,20 @@ class Contenu extends Model
         'id_categorie',
         'id_auteur',
         'vues',
+        'date_creation',
+        'date_validation',
+        'id_moderateur',
+        'parent_id',
+        'id_langue',
+        'id_region',
+        'id_type_contenu',
     ];
 
     protected $casts = [
         'prix' => 'decimal:2',
         'vues' => 'integer',
+        'date_creation' => 'datetime',
+        'date_validation' => 'datetime',
     ];
 
     protected static function boot()
@@ -57,6 +66,11 @@ class Contenu extends Model
         return $this->belongsTo(Utilisateur::class, 'id_auteur', 'id');
     }
 
+    public function moderateur()
+    {
+        return $this->belongsTo(Utilisateur::class, 'id_moderateur', 'id');
+    }
+
     public function medias()
     {
         return $this->hasMany(Media::class, 'id_contenu');
@@ -75,6 +89,31 @@ class Contenu extends Model
     public function paiements()
     {
         return $this->hasMany(Paiement::class, 'id_contenu');
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class, 'id_region');
+    }
+
+    public function langue()
+    {
+        return $this->belongsTo(Langue::class, 'id_langue');
+    }
+
+    public function typeContenu()
+    {
+        return $this->belongsTo(TypeContenu::class, 'id_type_contenu');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Contenu::class, 'parent_id');
+    }
+
+    public function enfants()
+    {
+        return $this->hasMany(Contenu::class, 'parent_id');
     }
 
     public function moyenneNotes()

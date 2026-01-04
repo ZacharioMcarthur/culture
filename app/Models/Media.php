@@ -19,6 +19,7 @@ class Media extends Model
         'id_utilisateur',
         'description',
         'taille',
+        'id_type_media',
     ];
 
     public function contenu()
@@ -29,6 +30,11 @@ class Media extends Model
     public function utilisateur()
     {
         return $this->belongsTo(Utilisateur::class, 'id_utilisateur', 'id');
+    }
+
+    public function typemedia()
+    {
+        return $this->belongsTo(TypeMedia::class, 'id_type_media');
     }
 }
 

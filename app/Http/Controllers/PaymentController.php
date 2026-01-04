@@ -342,4 +342,23 @@ class PaymentController extends Controller
         // Logique d'export CSV/Excel à implémenter
         return response()->json($payments);
     }
+
+    /**
+     * Handle successful payment.
+     */
+    public function success(Request $request)
+    {
+        // Logique de succès de paiement
+        return redirect()->route('dashboard')
+            ->with('success', 'Paiement réussi! Vous avez maintenant accès premium.');
+    }
+
+    /**
+     * Handle cancelled payment.
+     */
+    public function cancel(Request $request)
+    {
+        return redirect()->route('dashboard')
+            ->with('info', 'Paiement annulé.');
+    }
 }

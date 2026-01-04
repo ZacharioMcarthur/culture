@@ -69,6 +69,17 @@ class ContenuController extends Controller
     }
 
     /**
+     * Display the media gallery page.
+     */
+    public function mediasIndex()
+    {
+        // Récupérer tous les médias avec leurs relations
+        $medias = \App\Models\Media::with(['contenu', 'typemedia'])->get();
+        
+        return view('front.medias', compact('medias'));
+    }
+
+    /**
      * Afficher tous les contenus
      */
     public function tous()
